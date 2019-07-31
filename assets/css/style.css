@@ -6,10 +6,10 @@ body {
     overflow-x: hidden;
 }
 
-header {
+#header {
     width: 100%;
     position: fixed;
-    top: -10vw;
+    top: -20vh;
     left: 0;
     background: #ffffff;
     border-bottom-style: solid;
@@ -76,14 +76,17 @@ nav li a {
 #about {
     display: none;
     position: absolute;
-    top: 10vw;
+    top: 20vh;
     left: 10vw;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .75s ease-out;
 }
 
 #portfolio {
     position: absolute;
     left: 120vw;
-    top: 10vw;
+    top: 20vh;
 }
 
 #contact {
@@ -105,11 +108,17 @@ nav li a {
 #start {
     font-size: 4em;
     position: relative;
-    top: 20vw;
+    top: 40vh;
     color: white;
     text-align: center;
 }
 
 #cursor {
     display: inline;
+}
+
+#portrait {
+    height: 256px;
+    width: 256px;
+    background-image: url("../images/JLHBitPortrait.png");
 }
