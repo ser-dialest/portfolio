@@ -9,8 +9,8 @@ body {
 header {
     width: 100%;
     position: fixed;
-    top: 0;
-    left:0;
+    top: -10vw;
+    left: 0;
     background: #ffffff;
     border-bottom-style: solid;
     border-bottom-color: #999;
@@ -32,10 +32,10 @@ p {
 }
 
 nav {
+    position: relative;
     width: 80vw;
     left: 10vw;
     /* margin: 0px 10vw; */
-    position: relative;
     display: flex;
     justify-content: space-between;
 }
@@ -74,6 +74,7 @@ nav li a {
 }
 
 #about {
+    display: none;
     position: absolute;
     top: 10vw;
     left: 10vw;
@@ -99,4 +100,16 @@ nav li a {
 .rightImg {
     float: right;
     margin: .5em;
+}
+
+#start {
+    font-size: 4em;
+    position: relative;
+    top: 20vw;
+    color: white;
+    text-align: center;
+}
+
+#cursor {
+    display: inline;
 }
