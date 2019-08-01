@@ -40,13 +40,17 @@ function initialize() {
         about.style.maxHeight = "24em";
         const framesPerTick = 2;
 
-        let t = 0;
+        let t = -1;
         let i = 0;
         let string;
         let p;
+        const punctuation = [".", ",", "!", "?", ";", ":", "-"];
+        let pause;
 
         function letterRoll(timestamp) {
             if (i < intro.length) {
+                t++;
+                pause = 0;
                 if (t === 0) {
                     string = intro[i];
                     p = document.createElement('p');
@@ -61,17 +65,18 @@ function initialize() {
                     }
                     if (t % framesPerTick === 0) {
                         p.innerText = string.substring(0, t/framesPerTick);
+                        if (punctuation.includes(intro[i][(t/framesPerTick) - 1])) { 
+                            pause  =  250 
+                        }
                     }
                 } else {
                     i++;
                     t = -1;
-                    portrait.style.backgroundPositionX = "0px";                       
+                    portrait.style.backgroundPositionX = "0px";
                 }
-                t++;
-                requestAnimationFrame(letterRoll);
             }
+            setTimeout( () => requestAnimationFrame(letterRoll), pause);
         }
-
         requestAnimationFrame(letterRoll);
     };
     
