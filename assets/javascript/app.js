@@ -31,12 +31,13 @@ function initialize() {
         ]
 
         about.innerHTML = "";
+        about.style.padding = "36px";
         const portrait = document.createElement("div");
         portrait.setAttribute("id", "portrait");
         portrait.setAttribute("class", "leftImg");
         about.appendChild(portrait);
         // "<div class='leftImg' src='./assets/images/JLHBitPortrait.png' alt='8-bit Jeffrey Portrait'>";
-        about.style.display = "inline";
+        // about.style.display = "inline";
         about.style.maxHeight = "24em";
         const framesPerTick = 2;
 
@@ -65,9 +66,7 @@ function initialize() {
                     }
                     if (t % framesPerTick === 0) {
                         p.innerText = string.substring(0, t/framesPerTick);
-                        if (punctuation.includes(intro[i][(t/framesPerTick) - 1])) { 
-                            pause  =  250 
-                        }
+                        if (punctuation.includes(intro[i][(t/framesPerTick) - 1])) { pause  =  250 }
                     }
                 } else {
                     i++;
@@ -77,7 +76,11 @@ function initialize() {
             }
             setTimeout( () => requestAnimationFrame(letterRoll), pause);
         }
-        requestAnimationFrame(letterRoll);
+
+        setTimeout( () => {
+            portrait.style.backgroundImage = "url('./assets/images/JLHBitPortrait.png')";
+            requestAnimationFrame(letterRoll);
+        }, 500);
     };
     
     const cursor = document.getElementById("cursor");

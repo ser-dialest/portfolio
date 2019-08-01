@@ -74,13 +74,14 @@ nav li a {
 }
 
 #about {
-    display: none;
     position: absolute;
     top: 20vh;
     left: 10vw;
+    padding: 0px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height .75s ease-out;
+    transition: max-height .5s ease-out;
+    box-sizing: border-box;
 }
 
 #portfolio {
@@ -120,5 +121,4 @@ nav li a {
 #portrait {
     height: 256px;
     width: 256px;
-    background-image: url("../images/JLHBitPortrait.png");
 }
