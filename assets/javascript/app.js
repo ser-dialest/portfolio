@@ -2,6 +2,12 @@ const about = document.getElementById("about");
 const portfolio = document.getElementById("portfolio");
 const contact = document.getElementById("contact");
 
+let center = "about";
+let up = "contact";
+let down = "none";
+let right = "portfolio";
+let left = "none";
+
 function inWindow(element) {
     var placement = element.getBoundingClientRect();
     return (placement.top >= 0 && placement.bottom <= window.innerHeight);
@@ -29,6 +35,8 @@ function initialize() {
                 headerOffset += 1;
                 header.style.top = headerOffset + "vh";
                 requestAnimationFrame(showHeader);        
+            } else {
+                document.getElementById("portfolioLink").addEventListener("click", slamLeft);
             }
         }
 
@@ -62,6 +70,10 @@ function initialize() {
                     t++;
                     paragraphEnd = false;
                     aboutHeight = about.offsetHeight;
+                    if (i > 0) {
+                        const br = document.createElement("br");
+                        about.appendChild(br);
+                    }
                     portrait = document.createElement("div");
                     portrait.setAttribute("id", aboutArray[i].imgId);
                     portrait.setAttribute("class", "portraits");
@@ -83,7 +95,6 @@ function initialize() {
                             }
                         }
                     }, 500);
-                    console.log(aboutHeight);
                     about.style.maxHeight = (aboutHeight +1000) + "px";
                     paragraph = aboutArray[i].text;
                 } else if (j < paragraph.length) {
@@ -116,12 +127,10 @@ function initialize() {
                     aboutHeight = about.offsetHeight;
                     about.style.maxHeight = aboutHeight + "px";
 
-                    console.log("end of block", i);
                     setTimeout( () => {
                         i++;
                         j = 0;
                         t = -2;
-                        console.log(about.style.maxHeight);
                         requestAnimationFrame(talking)
                     }, 1500);
                 }
@@ -203,3 +212,30 @@ const about3 = new Block(
 
 const aboutArray = [intro, about1, about2, about3];
 
+function slamLeft() {
+    document.getElementById(right + "Link").removeEventListener("click", slamLeft);
+    const divIn = document.getElementById(right);
+    const divOut = document.getElementById(center);
+    divIn.style.display = "inline";
+    divIn.style.left = "10vw";
+    divOut.style.left = "-120vw";
+    divOut.style.display = "none";
+    left = center;
+    center = right;
+    right = "none";
+    document.getElementById(left + "Link").addEventListener("click", pushRight);
+}
+
+function pushRight() {
+    document.getElementById(left + "Link").removeEventListener("click", pushRight);
+    const divIn = document.getElementById(left);
+    const divOut = document.getElementById(center);
+    divIn.style.display = "inline";
+    divIn.style.left = "10vw";
+    divOut.style.left = "120vw";
+    divOut.style.display = "none";
+    right = center;
+    center = left;
+    left = "none";
+    document.getElementById(right + "Link").addEventListener("click", slamLeft);
+}

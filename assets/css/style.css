@@ -40,8 +40,9 @@ nav {
     justify-content: space-between;
 }
 
-nav a:hover {
+nav span:hover {
     color: #3e0ce8;
+    cursor: pointer;
 }
 
 nav li{
@@ -49,7 +50,7 @@ nav li{
     padding: 0px 10px;
 }
 
-nav li a {
+nav li span {
     color: #999;
     text-decoration: none;
 }
