@@ -37,6 +37,7 @@ function initialize() {
                 requestAnimationFrame(showHeader);        
             } else {
                 document.getElementById("portfolioLink").addEventListener("click", slamLeft);
+                document.getElementById("contactLink").addEventListener("click", knockDown);                
             }
         }
 
@@ -238,4 +239,33 @@ function pushRight() {
     center = left;
     left = "none";
     document.getElementById(right + "Link").addEventListener("click", slamLeft);
+}
+
+function jumpUp() {
+    console.log(down,center, up);
+    document.getElementById(down + "Link").removeEventListener("click", jumpUp);
+    const divIn = document.getElementById(down);
+    const divOut = document.getElementById(center);
+    divIn.style.display = "inline";
+    divIn.style.top = "20vh";
+    divOut.style.bottom = "-20vw";
+    divOut.style.display = "none";
+    up = center;
+    center = down;
+    down = "none";
+    document.getElementById(up + "Link").addEventListener("click", knockDown);
+}
+
+function knockDown() {
+    document.getElementById(up + "Link").removeEventListener("click", knockDown);
+    const divIn = document.getElementById(up);
+    const divOut = document.getElementById(center);
+    divIn.style.display = "inline";
+    divIn.style.top = "20vh";
+    divOut.style.top = "120vw";
+    divOut.style.display = "none";
+    down = center;
+    center = up;
+    up = "none";
+    document.getElementById(down + "Link").addEventListener("click", jumpUp);
 }
