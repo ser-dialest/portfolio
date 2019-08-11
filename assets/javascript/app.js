@@ -14,7 +14,7 @@ function initialize() {
     function clear() {
         document.removeEventListener("click", clear);
         document.getElementById("start").style.display = "none";
-        setTimeout( introduction, 500);
+        setTimeout(introduction, 500);
     }
 
     function introduction() {
@@ -36,59 +36,6 @@ function initialize() {
 
         about.innerHTML = "";
         about.style.padding = "36px";
-
-        // for (let i = 0; i < aboutArray.length; i++) {
-        //     const portrait = document.createElement("div");
-        //     portrait.setAttribute("id", aboutArray[i].imgId);
-        //     portrait.setAttribute("class", "portraits");
-        //     portrait.style.cssFloat = aboutArray[i].imgFloat;
-        //     about.appendChild(portrait);
-        //     about.style.maxHeight = "100em";
-
-        //     const punctuation = [".", ",", "!", "?", ";", ":", "-"];
-        //     const framesPerTick = 2;
-        //     let t = -1;
-        //     let j = 0;
-        //     let string;
-        //     let p;
-        //     let pause;
-        //     let paragraph = aboutArray[i].text;
-
-
-        //     function letterRoll(timestamp) {
-        //         if (j < paragraph.length) {
-        //             t++;
-        //             pause = 0;
-        //             if (t === 0) {
-        //                 string = paragraph[j];
-        //                 p = document.createElement('p');
-        //                 // p.setAttribute("id", "paragraph" + j);
-        //                 about.appendChild(p);
-        //             }
-        //             if (t <= string.length * framesPerTick) {
-        //                 if (t % (framesPerTick * 12) === 0) {
-        //                     portrait.style.backgroundPositionX = "256px";                        
-        //                 }  else if (t % (framesPerTick * 6) === 0) {
-        //                     portrait.style.backgroundPositionX = "0px";                       
-        //                 }
-        //                 if (t % framesPerTick === 0) {
-        //                     p.innerText = string.substring(0, t/framesPerTick);
-        //                     if (punctuation.includes(paragraph[j][(t/framesPerTick) - 1])) { pause  =  250 }
-        //                 }
-        //             } else {
-        //                 j++;
-        //                 t = -1;
-        //                 portrait.style.backgroundPositionX = "0px";
-        //             }
-        //         }
-        //         setTimeout( () => requestAnimationFrame(letterRoll), pause);
-        //     }
-    
-        //     setTimeout( () => {
-        //         portrait.style.backgroundImage = aboutArray[i].imgUrl;
-        //         requestAnimationFrame(letterRoll);
-        //     }, 500);
-        // } 
 
         // Counters
         let i = 0;
@@ -122,8 +69,19 @@ function initialize() {
                     about.appendChild(portrait);
                     setTimeout( () => {
                         portrait.style.backgroundImage = aboutArray[i].imgUrl;
-                        requestAnimationFrame(talking);
                         about.style.maxHeight = "100000px";
+                        if (inWindow(portrait)) {
+                            requestAnimationFrame(talking);
+                        } else {
+                            document.addEventListener("scroll", animate);
+
+                            function animate() {
+                                if (inWindow(portrait)) {
+                                    document.removeEventListener("scroll", animate);
+                                    requestAnimationFrame(talking);
+                                }
+                            }
+                        }
                     }, 500);
                     console.log(aboutHeight);
                     about.style.maxHeight = (aboutHeight +1000) + "px";
@@ -244,6 +202,4 @@ const about3 = new Block(
 );
 
 const aboutArray = [intro, about1, about2, about3];
-
-
 
