@@ -80,7 +80,7 @@ nav li a {
     padding: 0px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height .5s ease-out;
+    transition: max-height .5s linear;
     box-sizing: border-box;
 }
 
@@ -88,6 +88,7 @@ nav li a {
     position: absolute;
     left: 120vw;
     top: 20vh;
+    display: none;
 }
 
 #contact {
@@ -96,14 +97,10 @@ nav li a {
     left: 10vw;
 }
 
-.leftImg {
-    float: left;
+.portraits {
     margin: .5em;
-}
-
-.rightImg {
-    float: right;
-    margin: .5em;
+    height: 256px;
+    width: 256px;
 }
 
 #start {
@@ -116,9 +113,4 @@ nav li a {
 
 #cursor {
     display: inline;
-}
-
-#portrait {
-    height: 256px;
-    width: 256px;
 }
