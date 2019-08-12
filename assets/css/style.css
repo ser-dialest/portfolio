@@ -76,8 +76,6 @@ nav li span {
 
 #about {
     position: absolute;
-    top: 20vh;
-    left: 10vw;
     padding: 0px;
     max-height: 0;
     overflow: hidden;
@@ -87,15 +85,11 @@ nav li span {
 
 #portfolio {
     position: absolute;
-    left: 120vw;
-    top: 20vh;
     display: none;
 }
 
 #contact {
     position: absolute;
-    top: -110vw;
-    left: 10vw;
 }
 
 .portraits {

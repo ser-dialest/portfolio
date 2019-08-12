@@ -1,6 +1,12 @@
 const about = document.getElementById("about");
+about.style.top = "20vh";
+about.style.left = "10vw";
 const portfolio = document.getElementById("portfolio");
+portfolio.style.top = "20vh";
+portfolio.style.left = "120vw";
 const contact = document.getElementById("contact");
+contact.style.top = "-110vh";
+contact.style.left = "10vw";
 
 let center = "about";
 let up = "contact";
@@ -218,9 +224,56 @@ function slamLeft() {
     const divIn = document.getElementById(right);
     const divOut = document.getElementById(center);
     divIn.style.display = "inline";
-    divIn.style.left = "10vw";
-    divOut.style.left = "-120vw";
-    divOut.style.display = "none";
+    
+    let t = 0;
+    //get number of vw in starting location
+    let inX = parseInt(divIn.style.left.substring(0, divIn.style.left.length - 2));
+    let outX = parseInt(divOut.style.left.substring(0, divOut.style.left.length - 2));
+
+    function slamAnimation(timestamp) {
+        if (t < 150) {
+            console.log(divIn.style.left);
+            if (t <= 30) {
+            } else if (t <= 40) {
+                inX -= 3;
+                if (t === 40) {
+                    outX--;
+                }
+            } else if (t <= 45) {
+                inX--;
+                outX--;
+            } else if (t <= 55) {
+                inX -= .5;
+                outX -= .5;
+            } else if (t <= 65) {
+            } else if (t <= 69) {
+                inX += .5;
+                outX += .5;
+            } else if (t <= 80) {
+                inX++;
+                outX++;
+            } else if (t <= 90) {
+            } else if (t <= 100) {
+                inX -= 2;
+                outX -= 2;
+            } else if (t <= 121) {
+                inX -= 3;
+                outX -= 3;
+            } else {
+                outX -= 3;
+            }
+            divIn.style.left = inX + "vw";
+            divOut.style.left = outX + "vw"; 
+            t++;
+            requestAnimationFrame(slamAnimation);
+        } else {
+            divOut.style.left = "-120vw";
+            divOut.style.display = "none";
+        }
+    }
+
+    // debugger
+    requestAnimationFrame(slamAnimation);
     left = center;
     center = right;
     right = "none";
