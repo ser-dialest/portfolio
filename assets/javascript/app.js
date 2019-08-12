@@ -232,7 +232,6 @@ function slamLeft() {
 
     function slamAnimation(timestamp) {
         if (t < 150) {
-            console.log(divIn.style.left);
             if (t <= 30) {
             } else if (t <= 40) {
                 inX -= 3;
@@ -269,29 +268,74 @@ function slamLeft() {
         } else {
             divOut.style.left = "-120vw";
             divOut.style.display = "none";
+            left = center;
+            center = right;
+            right = "none";
+            document.getElementById(left + "Link").addEventListener("click", runRight);
         }
     }
 
-    // debugger
     requestAnimationFrame(slamAnimation);
-    left = center;
-    center = right;
-    right = "none";
-    document.getElementById(left + "Link").addEventListener("click", pushRight);
 }
 
-function pushRight() {
-    document.getElementById(left + "Link").removeEventListener("click", pushRight);
+function runRight() {
+    document.getElementById(left + "Link").removeEventListener("click", runRight);
     const divIn = document.getElementById(left);
     const divOut = document.getElementById(center);
     divIn.style.display = "inline";
-    divIn.style.left = "10vw";
-    divOut.style.left = "120vw";
-    divOut.style.display = "none";
-    right = center;
-    center = left;
-    left = "none";
-    document.getElementById(right + "Link").addEventListener("click", slamLeft);
+
+    let t = 0;
+    //get number of vw in starting location
+    let inX = parseInt(divIn.style.left.substring(0, divIn.style.left.length - 2));
+    let outX = parseInt(divOut.style.left.substring(0, divOut.style.left.length - 2));
+
+    function runAnimation(timestamp) {
+        if (t < 150) {
+            if (t <= 30) {
+            } else if (t <= 40) {
+                outX -= .25;
+            } else if (t <= 55) {
+            } else if (t <= 65) {
+                outX -= .25;
+            } else if (t <= 80) {
+            } else if (t <= 90) {
+                outX += .25;
+            } else if (t <= 110) {
+                inX += 2;
+                outX += .25;
+            } else if (t <= 120) {
+                inX += 2;
+                outX++;
+            } else if (t <= 130) {
+                inX += 2;
+                outX += 2;
+            } else if (t <= 146) {
+                inX += 3;
+                outX += 3;
+            } else if (t <= 147) {
+                inX += 1;
+                outX += 3;
+            } else {
+                inX += .5;
+                outX += 3;
+            }
+
+            divIn.style.left = inX + "vw";
+            divOut.style.left = outX + "vw"; 
+            t++;
+            requestAnimationFrame(runAnimation);
+        } else {
+            divOut.style.left = "120vw";
+            divOut.style.display = "none";
+            right = center;
+            center = left;
+            left = "none";
+            document.getElementById(right + "Link").addEventListener("click", slamLeft);
+        }
+    }
+
+    requestAnimationFrame(runAnimation);
+
 }
 
 function jumpUp() {
