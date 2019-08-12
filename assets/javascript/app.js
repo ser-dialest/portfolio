@@ -247,8 +247,8 @@ function jumpUp() {
     const divIn = document.getElementById(down);
     const divOut = document.getElementById(center);
     divIn.style.display = "inline";
-    divIn.style.top = "20vh";
-    divOut.style.bottom = "-20vw";
+    divIn.style.top = "160px";
+    divOut.style.top = "-1000px";
     divOut.style.display = "none";
     up = center;
     center = down;
@@ -261,8 +261,8 @@ function knockDown() {
     const divIn = document.getElementById(up);
     const divOut = document.getElementById(center);
     divIn.style.display = "inline";
-    divIn.style.top = "20vh";
-    divOut.style.top = "120vw";
+    divIn.style.top = "160px";
+    divOut.style.top = "2000px";
     divOut.style.display = "none";
     down = center;
     center = up;
