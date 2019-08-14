@@ -220,7 +220,9 @@ const about3 = new Block(
 const aboutArray = [intro, about1, about2, about3];
 
 function slamLeft() {
-    document.getElementById(right + "Link").removeEventListener("click", slamLeft);
+    removeListeners();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     const divIn = document.getElementById(right);
     const divOut = document.getElementById(center);
     divIn.style.display = "inline";
@@ -271,7 +273,7 @@ function slamLeft() {
             left = center;
             center = right;
             right = "none";
-            document.getElementById(left + "Link").addEventListener("click", runRight);
+            addListeners();
         }
     }
 
@@ -279,7 +281,9 @@ function slamLeft() {
 }
 
 function runRight() {
-    document.getElementById(left + "Link").removeEventListener("click", runRight);
+    removeListeners();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     const divIn = document.getElementById(left);
     const divOut = document.getElementById(center);
     divIn.style.display = "inline";
@@ -330,7 +334,7 @@ function runRight() {
             right = center;
             center = left;
             left = "none";
-            document.getElementById(right + "Link").addEventListener("click", slamLeft);
+            addListeners();            
         }
     }
 
@@ -340,31 +344,126 @@ function runRight() {
 
 function jumpUp() {
     console.log(down,center, up);
-    document.getElementById(down + "Link").removeEventListener("click", jumpUp);
+    removeListeners();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     const divIn = document.getElementById(down);
     const divOut = document.getElementById(center);
     divIn.style.display = "inline";
     divIn.style.top = "20vh";
     divIn.style.bottom = null;
-    divOut.style.bottom = "-20vw";
+    divOut.style.top = "-110vw";
+    divOut.style.bottom = null;
     divOut.style.display = "none";
     up = center;
     center = down;
     down = "none";
-    document.getElementById(up + "Link").addEventListener("click", knockDown);
+    addListeners();    
 }
 
 function knockDown() {
-    document.getElementById(up + "Link").removeEventListener("click", knockDown);
+    removeListeners();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     const divIn = document.getElementById(up);
     const divOut = document.getElementById(center);
+    
+    let t = 0;
+    //get number of vw in starting location
+    let inButt = 100;
+    let inY = parseInt(divIn.style.top.substring(0, divIn.style.top.length - 2));
+    let outY = parseInt(divOut.style.top.substring(0, divOut.style.top.length - 2));
+    
+    divIn.style.top = "-10000vh"
     divIn.style.display = "inline";
-    divIn.style.bottom = null;
-    divIn.style.top = "20vh";
-    divOut.style.top = "120vw";
-    divOut.style.display = "none";
-    down = center;
-    center = up;
-    up = "none";
-    document.getElementById(down + "Link").addEventListener("click", jumpUp);
+    
+    function knockAnimation(timestamp) {
+        if (t <= 150) {
+            if (t <= 15) {
+            } else if (t <= 30) {
+                inButt -= 2;
+                divIn.style.bottom = inButt + "vh";
+                if (t === 30) {
+                    outY += 5;
+                }
+            } else if ( t <= 40) {
+            } else if ( t <= 45) {
+                inButt += .5;
+                divIn.style.bottom = inButt + "vh";
+            } else if ( t <= 50) {
+                inButt += 2.5;
+                divIn.style.bottom = inButt + "vh";
+            } else if ( t <= 55) {
+            } else if ( t <= 75 ) {
+                if (t % 4 === 0) {
+                    divOut.style.left = 11 + "vw";
+                } else if ( t % 2 ===0) {
+                    divOut.style.left = 9 + "vw";
+                }
+            } else if ( t === 76 ) {
+                divOut.style.left = 10 + "vw";
+                divIn.style.bottom = null;
+                divIn.style.maxHeight = "100vh";
+                divIn.style.top = "-110vh"
+                console.log(divIn.style.top);
+
+            } else if ( t <= 80 ) {
+            } else if ( t <= 85) {
+                outY += .5;
+            } else if ( t <= 90) {
+                outY++;
+            } else if ( t <= 100) {
+                outY += 3;
+            } else if ( t <= 140) {
+                inY += 3;
+                outY += 5;
+            } else if ( t <= 150) {
+                inY++;
+                outY += 5;
+            }
+            divIn.style.top = inY + "vh";
+            divOut.style.top = outY + "vh"; 
+            t++;
+            requestAnimationFrame(knockAnimation);
+        } else {
+            divIn.style.maxHeight = "10000vh";
+            divOut.style.top = "120vw";
+            divOut.style.display = "none";
+            down = center;
+            center = up;
+            up = "none";
+            addListeners();
+        }
+    }
+    requestAnimationFrame(knockAnimation);
+}
+
+function removeListeners() {
+    if ( right !== "none") {
+        document.getElementById(right + "Link").removeEventListener("click", slamLeft);
+    }
+    if ( left !== "none") {
+        document.getElementById(left + "Link").removeEventListener("click", runRight);
+    }
+    if ( down !== "none") {
+        document.getElementById(down + "Link").removeEventListener("click", jumpUp);
+    }
+    if ( up !== "none") {
+        document.getElementById(up + "Link").removeEventListener("click", knockDown);
+    }
+}
+
+function addListeners() {
+    if ( right !== "none") {
+        document.getElementById(right + "Link").addEventListener("click", slamLeft);
+    }
+    if ( left !== "none") {
+        document.getElementById(left + "Link").addEventListener("click", runRight);
+    }
+    if ( down !== "none") {
+        document.getElementById(down + "Link").addEventListener("click", jumpUp);
+    }
+    if ( up !== "none") {
+        document.getElementById(up + "Link").addEventListener("click", knockDown);
+    }
 }
