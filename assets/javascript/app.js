@@ -145,8 +145,7 @@ function initialize() {
                 about.style.maxHeight = "100000px";
             }
         }
-        // debugger
-        requestAnimationFrame(talking);
+        // requestAnimationFrame(talking);
     };
     
     const cursor = document.getElementById("cursor");
@@ -337,13 +336,10 @@ function runRight() {
             addListeners();            
         }
     }
-
     requestAnimationFrame(runAnimation);
-
 }
 
 function jumpUp() {
-    console.log(down,center, up);
     removeListeners();
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -367,7 +363,7 @@ function knockDown() {
     document.documentElement.scrollTop = 0;
     const divIn = document.getElementById(up);
     const divOut = document.getElementById(center);
-    
+
     let t = 0;
     //get number of vw in starting location
     let inButt = 100;
@@ -405,8 +401,6 @@ function knockDown() {
                 divIn.style.bottom = null;
                 divIn.style.maxHeight = "100vh";
                 divIn.style.top = "-110vh"
-                console.log(divIn.style.top);
-
             } else if ( t <= 80 ) {
             } else if ( t <= 85) {
                 outY += .5;
@@ -421,12 +415,14 @@ function knockDown() {
                 inY++;
                 outY += 5;
             }
-            divIn.style.top = inY + "vh";
+            if (t >= 76) {
+                divIn.style.top = inY + "vh";
+            }
             divOut.style.top = outY + "vh"; 
             t++;
             requestAnimationFrame(knockAnimation);
         } else {
-            divIn.style.maxHeight = "10000vh";
+            divIn.style.maxHeight = null;
             divOut.style.top = "120vw";
             divOut.style.display = "none";
             down = center;
