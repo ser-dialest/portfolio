@@ -147,7 +147,7 @@ function initialize() {
                 about.style.maxHeight = "100000px";
             }
         }
-        // requestAnimationFrame(talking);
+        requestAnimationFrame(talking);
     };
     
     const cursor = document.getElementById("cursor");
