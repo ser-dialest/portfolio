@@ -86,7 +86,6 @@ nav li span {
 #about {
     position: absolute;
     padding: 0px;
-    max-height: 0;
     overflow: hidden;
     box-sizing: border-box;
 }

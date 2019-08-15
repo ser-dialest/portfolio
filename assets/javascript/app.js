@@ -1,6 +1,8 @@
 const about = document.getElementById("about");
 about.style.top = "20vh";
 about.style.left = "10vw";
+about.style.maxHeight = 0;
+
 const portfolio = document.getElementById("portfolio");
 portfolio.style.top = "20vh";
 portfolio.style.left = "120vw";
@@ -88,7 +90,7 @@ function initialize() {
                     about.appendChild(portrait);
                     setTimeout( () => {
                         portrait.style.backgroundImage = aboutArray[i].imgUrl;
-                        about.style.maxHeight = "100000px";
+                        about.style.maxHeight = null;
                         if (inWindow(portrait)) {
                             requestAnimationFrame(talking);
                         } else {
@@ -145,7 +147,7 @@ function initialize() {
                 about.style.maxHeight = "100000px";
             }
         }
-        requestAnimationFrame(talking);
+        // requestAnimationFrame(talking);
     };
     
     const cursor = document.getElementById("cursor");
@@ -339,22 +341,77 @@ function runRight() {
     requestAnimationFrame(runAnimation);
 }
 
-function jumpUp() {
+function blastUp() {
     removeListeners();
+    // debugger
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     const divIn = document.getElementById(down);
     const divOut = document.getElementById(center);
-    divIn.style.display = "inline";
-    divIn.style.top = "20vh";
-    divIn.style.bottom = null;
-    divOut.style.top = "-110vw";
-    divOut.style.bottom = null;
-    divOut.style.display = "none";
-    up = center;
-    center = down;
-    down = "none";
-    addListeners();    
+    let t = 0;
+    //get number of vw in starting location
+    let outX = parseInt(divOut.style.left.substring(0, divOut.style.left.length - 2));
+    let outY = parseInt(divOut.style.top.substring(0, divOut.style.top.length - 2));
+    let inY = parseInt(divIn.style.top.substring(0, divIn.style.left.top - 2));
+
+    function blastAnimation(timestamp) {
+        if (t <= 150) {
+            if (t <= 30) {
+            } else if (t <= 60) {
+                if (t % 10 === 2) {
+                    outX -= 2;
+                    outY -= 2;
+                } else if (t % 10 === 4) {
+                    outY += 2;
+                } else if (t % 10 === 6) {
+                    outX += 2;
+                    outY--;
+                } else if (t % 10 === 8) {
+                    outX -= 2;
+                    outY++;
+                } else if (t % 10 === 0) {
+                    outX += 2;
+                }
+            } else if (t <= 70) {
+                if (t === 61) {
+                    divOut.style.maxHeight = "120vh";
+                    inY = 120;
+                }
+                outY -= .5;
+            } else if ( t<=75 ) {
+                outY--;
+            } else if (t <= 80) {
+                outY -= 2;
+            } else if (t <= 105) {
+                outY -= 4;
+            } else if (t <= 130) {
+                if (t === 106) {
+                    divIn.style.display = "inline";
+                }
+                outY -= 4;
+                inY -= 4;
+            } else if (t <= 135) {
+                inY --;
+            } else if (t <= 145) {
+            } else {
+                inY ++;
+            }
+            divIn.style.top = inY + "vh";
+            divOut.style.top = outY + "vh";            
+            divOut.style.left = outX + "vw"; 
+            t++;
+            requestAnimationFrame(blastAnimation);
+        } else {
+            divOut.style.display = "none";
+            divOut.style.top = "-110vw";
+            divOut.style.maxHeight = null;
+            up = center;
+            center = down;
+            down = "none";
+            addListeners();    
+        }
+    }
+    requestAnimationFrame(blastAnimation);
 }
 
 function knockDown() {
@@ -442,7 +499,7 @@ function removeListeners() {
         document.getElementById(left + "Link").removeEventListener("click", runRight);
     }
     if ( down !== "none") {
-        document.getElementById(down + "Link").removeEventListener("click", jumpUp);
+        document.getElementById(down + "Link").removeEventListener("click", blastUp);
     }
     if ( up !== "none") {
         document.getElementById(up + "Link").removeEventListener("click", knockDown);
@@ -457,7 +514,7 @@ function addListeners() {
         document.getElementById(left + "Link").addEventListener("click", runRight);
     }
     if ( down !== "none") {
-        document.getElementById(down + "Link").addEventListener("click", jumpUp);
+        document.getElementById(down + "Link").addEventListener("click", blastUp);
     }
     if ( up !== "none") {
         document.getElementById(up + "Link").addEventListener("click", knockDown);
