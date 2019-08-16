@@ -457,7 +457,9 @@ function knockDown() {
                 divOut.style.left = 10 + "vw";
                 divIn.style.bottom = null;
                 divIn.style.maxHeight = "100vh";
-                divIn.style.top = "-110vh"
+                divIn.style.top = "-110vh";
+
+                divIn.firstChild.style.height = "calc(100vh - 72px)";
             } else if ( t <= 80 ) {
             } else if ( t <= 85) {
                 outY += .5;
