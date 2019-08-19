@@ -343,7 +343,6 @@ function runRight() {
 
 function blastUp() {
     removeListeners();
-    // debugger
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     const divIn = document.getElementById(down);
@@ -374,7 +373,6 @@ function blastUp() {
                 }
             } else if (t <= 70) {
                 if (t === 61) {
-                    // divOut.style.maxHeight = "120vh";
                     inY = 120;
                 }
                 outY -= .5;
@@ -408,8 +406,6 @@ function blastUp() {
             requestAnimationFrame(blastAnimation);
         } else {
             divOut.style.display = "none";
-            console.log(divOut.style.top);
-            // divOut.style.top = "-110vw";
             divOut.style.maxHeight = null;
             up = center;
             center = down;
@@ -433,7 +429,6 @@ function knockDown() {
     let inY = parseInt(divIn.style.top.substring(0, divIn.style.top.length - 2));
     let outY = parseInt(divOut.style.top.substring(0, divOut.style.top.length - 2));
     
-    // divIn.style.top = "-10000vh"
     divIn.style.display = "inline";
     
     function knockAnimation(timestamp) {
@@ -462,8 +457,6 @@ function knockDown() {
             } else if ( t === 76 ) {
                 divOut.style.left = 10 + "vw";
                 divIn.style.bottom = null;
-                // divIn.style.maxHeight = "100vh";
-                // divIn.style.top = "-110vh"
             } else if ( t <= 80 ) {
             } else if ( t <= 85) {
                 outY += .5;
@@ -484,7 +477,6 @@ function knockDown() {
                 if (inY < 20) {
                     inY++;
                     t--;
-                    console.log(divIn.style.top);
                 }
             }
             if (t >= 76) {
@@ -494,7 +486,6 @@ function knockDown() {
             t++;
             requestAnimationFrame(knockAnimation);
         } else {
-            // divIn.style.maxHeight = null;
             divOut.style.display = "none";
             divOut.style.top = "120vw";
             down = center;
