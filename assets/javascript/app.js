@@ -374,7 +374,7 @@ function blastUp() {
                 }
             } else if (t <= 70) {
                 if (t === 61) {
-                    divOut.style.maxHeight = "120vh";
+                    // divOut.style.maxHeight = "120vh";
                     inY = 120;
                 }
                 outY -= .5;
@@ -385,11 +385,16 @@ function blastUp() {
             } else if (t <= 105) {
                 outY -= 4;
             } else if (t <= 130) {
-                if (t === 106) {
-                    divIn.style.display = "inline";
+                let outPlacement = divOut.getBoundingClientRect();
+                if (outPlacement.bottom > 0) {
+                    outY -= 6;
+                    t--;
+                } else {
+                    if (t === 106) {
+                        divIn.style.display = "inline";
+                    }
+                    inY -= 4;
                 }
-                outY -= 4;
-                inY -= 4;
             } else if (t <= 135) {
                 inY --;
             } else if (t <= 145) {
@@ -403,7 +408,8 @@ function blastUp() {
             requestAnimationFrame(blastAnimation);
         } else {
             divOut.style.display = "none";
-            divOut.style.top = "-110vw";
+            console.log(divOut.style.top);
+            // divOut.style.top = "-110vw";
             divOut.style.maxHeight = null;
             up = center;
             center = down;
@@ -427,11 +433,11 @@ function knockDown() {
     let inY = parseInt(divIn.style.top.substring(0, divIn.style.top.length - 2));
     let outY = parseInt(divOut.style.top.substring(0, divOut.style.top.length - 2));
     
-    divIn.style.top = "-10000vh"
+    // divIn.style.top = "-10000vh"
     divIn.style.display = "inline";
     
     function knockAnimation(timestamp) {
-        if (t <= 150) {
+        if (t <= 103) {
             if (t <= 15) {
             } else if (t <= 30) {
                 inButt -= 2;
@@ -456,8 +462,8 @@ function knockDown() {
             } else if ( t === 76 ) {
                 divOut.style.left = 10 + "vw";
                 divIn.style.bottom = null;
-                divIn.style.maxHeight = "100vh";
-                divIn.style.top = "-110vh"
+                // divIn.style.maxHeight = "100vh";
+                // divIn.style.top = "-110vh"
             } else if ( t <= 80 ) {
             } else if ( t <= 85) {
                 outY += .5;
@@ -465,12 +471,21 @@ function knockDown() {
                 outY++;
             } else if ( t <= 100) {
                 outY += 3;
-            } else if ( t <= 140) {
-                inY += 3;
-                outY += 5;
-            } else if ( t <= 150) {
-                inY++;
-                outY += 5;
+            } else if ( t <= 101) {
+                if (inY < 0) {
+                    inY += 3;
+                    outY += 5;
+                    t--;
+                }
+                if (outY > 100) {
+                    divOut.style.display = "none";
+                }
+            } else if ( t <= 102) {
+                if (inY < 20) {
+                    inY++;
+                    t--;
+                    console.log(divIn.style.top);
+                }
             }
             if (t >= 76) {
                 divIn.style.top = inY + "vh";
@@ -479,9 +494,9 @@ function knockDown() {
             t++;
             requestAnimationFrame(knockAnimation);
         } else {
-            divIn.style.maxHeight = null;
-            divOut.style.top = "120vw";
+            // divIn.style.maxHeight = null;
             divOut.style.display = "none";
+            divOut.style.top = "120vw";
             down = center;
             center = up;
             up = "none";
