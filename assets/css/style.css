@@ -98,6 +98,7 @@ nav li span {
 
 #contact {
     position: absolute;
+    display: none;
 }
 
 .portraits {
