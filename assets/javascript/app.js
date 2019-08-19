@@ -18,7 +18,7 @@ let left = "none";
 
 function inWindow(element) {
     var placement = element.getBoundingClientRect();
-    return (placement.top >= 0 && placement.bottom <= window.innerHeight);
+    return ((placement.top >= 0 && placement.top <= window.innerHeight) || placement.bottom <= window.innerHeight);
 };
 
 function initialize() {
