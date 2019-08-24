@@ -118,3 +118,8 @@ nav li span {
 #cursor {
     display: inline;
 }
+
+#jumpToPort:hover {
+    color: #3e0ce8;
+    cursor: pointer;
+}

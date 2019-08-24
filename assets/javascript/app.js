@@ -608,6 +608,7 @@ function newTalk(obj) {
                     span.setAttribute("id", obj.text[obj.spans][1]);
                     if (span.id === "jumpToPort") {
                         span.addEventListener("click", portAnimation());
+                        span.style.textDecoration = "underline";
                     }
                     div.appendChild(span);
                 }
