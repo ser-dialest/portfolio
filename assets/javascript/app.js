@@ -6,6 +6,7 @@ about.style.maxHeight = 0;
 const portfolio = document.getElementById("portfolio");
 portfolio.style.top = "20vh";
 portfolio.style.left = "120vw";
+
 const contact = document.getElementById("contact");
 contact.style.top = "-110vh";
 contact.style.left = "10vw";
@@ -54,100 +55,103 @@ function initialize() {
         about.innerHTML = "";
         about.style.padding = "36px";
 
-        // Counters
-        let i = 0;
-        let j = 0;
-        let t = -2;
+        makeBlock(intro);
 
-        // animation variables
-        let string;
-        let p;
-        let pause;
-        let paragraph;
-        let portrait;
-        let imgPosX = 0;
-        let aboutHeight = 0;
-        let paragraphEnd = false;
+    // Trying new talk
+    //     // Counters
+    //     let i = 0;
+    //     let j = 0;
+    //     let t = -2;
 
-        // animation constants
-        const punctuation = [".", ",", "!", "?", ";", ":", "-"];
-        const framesPerTick = 2;
+    //     // animation variables
+    //     let string;
+    //     let p;
+    //     let pause;
+    //     let paragraph;
+    //     let portrait;
+    //     let imgPosX = 0;
+    //     let aboutHeight = 0;
+    //     let paragraphEnd = false;
 
-        function talking(timestamp) {
-            if (i < aboutArray.length) {
-                if (t === -2) {
-                    t++;
-                    paragraphEnd = false;
-                    aboutHeight = about.offsetHeight;
-                    if (i > 0) {
-                        const br = document.createElement("br");
-                        about.appendChild(br);
-                    }
-                    portrait = document.createElement("div");
-                    portrait.setAttribute("id", aboutArray[i].imgId);
-                    portrait.setAttribute("class", "portraits");
-                    portrait.style.cssFloat = aboutArray[i].imgFloat;
-                    about.appendChild(portrait);
-                    setTimeout( () => {
-                        portrait.style.backgroundImage = aboutArray[i].imgUrl;
-                        about.style.maxHeight = null;
-                        if (inWindow(portrait)) {
-                            requestAnimationFrame(talking);
-                        } else {
-                            document.addEventListener("scroll", animate);
+    //     // animation constants
+    //     const punctuation = [".", ",", "!", "?", ";", ":", "-"];
+    //     const framesPerTick = 2;
 
-                            function animate() {
-                                if (inWindow(portrait)) {
-                                    document.removeEventListener("scroll", animate);
-                                    requestAnimationFrame(talking);
-                                }
-                            }
-                        }
-                    }, 500);
-                    about.style.maxHeight = (aboutHeight +1000) + "px";
-                    paragraph = aboutArray[i].text;
-                } else if (j < paragraph.length) {
-                    t++;
-                    pause = 0;
-                    if (t === 0) {
-                        string = paragraph[j];
-                        p = document.createElement('p');
-                        about.appendChild(p);
-                    }
-                    if (t <= string.length * framesPerTick) {
-                        // Mouth movement
-                        if (t % (framesPerTick * 4) === 0) {
-                            imgPosX += 256;
-                            portrait.style.backgroundPositionX = imgPosX + "px";                       
-                        }
-                        // Letter scroll
-                        if (t % framesPerTick === 0) {
-                            p.innerText = string.substring(0, t/framesPerTick);
-                            if (punctuation.includes(paragraph[j][(t/framesPerTick) - 1])) { pause  =  250 }
-                        }
-                    } else {
-                        j++;
-                        t = -1;
-                        portrait.style.backgroundPositionX = "0px";
-                    }
-                    setTimeout( () => requestAnimationFrame(talking), pause);
-                } else if (!paragraphEnd) {
-                    paragraphEnd = true;
-                    aboutHeight = about.offsetHeight;
-                    about.style.maxHeight = aboutHeight + "px";
+    //     function talking(timestamp) {
+    //         if (i < aboutArray.length) {
+    //             if (t === -2) {
+    //                 t++;
+    //                 paragraphEnd = false;
+    //                 aboutHeight = about.offsetHeight;
+    //                 if (i > 0) {
+    //                     const br = document.createElement("br");
+    //                     about.appendChild(br);
+    //                 }
+    //                 portrait = document.createElement("div");
+    //                 portrait.setAttribute("id", aboutArray[i].imgId);
+    //                 portrait.setAttribute("class", "portraits");
+    //                 portrait.style.cssFloat = aboutArray[i].imgFloat;
+    //                 about.appendChild(portrait);
+    //                 setTimeout( () => {
+    //                     portrait.style.backgroundImage = aboutArray[i].imgUrl;
+    //                     about.style.maxHeight = null;
+    //                     if (inWindow(portrait)) {
+    //                         requestAnimationFrame(talking);
+    //                     } else {
+    //                         document.addEventListener("scroll", animate);
 
-                    setTimeout( () => {
-                        i++;
-                        j = 0;
-                        t = -2;
-                        requestAnimationFrame(talking)
-                    }, 1500);
-                }
-            } else {
-                about.style.maxHeight = "100000px";
-            }
-        }
-        requestAnimationFrame(talking);
+    //                         function animate() {
+    //                             if (inWindow(portrait)) {
+    //                                 document.removeEventListener("scroll", animate);
+    //                                 requestAnimationFrame(talking);
+    //                             }
+    //                         }
+    //                     }
+    //                 }, 500);
+    //                 about.style.maxHeight = (aboutHeight +1000) + "px";
+    //                 paragraph = aboutArray[i].text;
+    //             } else if (j < paragraph.length) {
+    //                 t++;
+    //                 pause = 0;
+    //                 if (t === 0) {
+    //                     string = paragraph[j];
+    //                     p = document.createElement('p');
+    //                     about.appendChild(p);
+    //                 }
+    //                 if (t <= string.length * framesPerTick) {
+    //                     // Mouth movement
+    //                     if (t % (framesPerTick * 4) === 0) {
+    //                         imgPosX += 256;
+    //                         portrait.style.backgroundPositionX = imgPosX + "px";                       
+    //                     }
+    //                     // Letter scroll
+    //                     if (t % framesPerTick === 0) {
+    //                         p.innerText = string.substring(0, t/framesPerTick);
+    //                         if (punctuation.includes(paragraph[j][(t/framesPerTick) - 1])) { pause  =  250 }
+    //                     }
+    //                 } else {
+    //                     j++;
+    //                     t = -1;
+    //                     portrait.style.backgroundPositionX = "0px";
+    //                 }
+    //                 setTimeout( () => requestAnimationFrame(talking), pause);
+    //             } else if (!paragraphEnd) {
+    //                 paragraphEnd = true;
+    //                 aboutHeight = about.offsetHeight;
+    //                 about.style.maxHeight = aboutHeight + "px";
+
+    //                 setTimeout( () => {
+    //                     i++;
+    //                     j = 0;
+    //                     t = -2;
+    //                     requestAnimationFrame(talking)
+    //                 }, 1500);
+    //             }
+    //         } else {
+    //             about.style.maxHeight = "100000px";
+    //         }
+    //     }
+    //     requestAnimationFrame(talking);
     };
     
     const cursor = document.getElementById("cursor");
@@ -171,54 +175,57 @@ function initialize() {
 
 initialize();
 
-function Block(imgUrl, imgId, imgFloat, text) {
-    this.imgUrl = imgUrl;
-    this.imgId = imgId;
-    this.imgFloat = imgFloat;
-    this.text = text;
-}
+// Trying this a new way
 
-const intro = new Block(
-    "url('./assets/images/JLHBitPortrait.png')",
-    "jeff",
-    "left",
-    [
-        "Hello, this is Jeffrey. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.",
-        "A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?"
-    ]
-);
+// function Block(imgUrl, imgId, imgFloat, text) {
+//     this.imgUrl = imgUrl;
+//     this.imgId = imgId;
+//     this.imgFloat = imgFloat;
+//     this.text = text;
+// }
 
-const about1 = new Block(
-    "url('./assets/images/JLHBitPortrait.png')",
-    "jeff",
-    "right",
-    [
-        "Jeffrey again! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.",
-        "A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?"
-    ]
-);
+// const intro = new Block(
+//     "url('./assets/images/JLHBitPortrait.png')",
+//     "jeff",
+//     "left",
+//     [
+//         ["Hello, this is Jeffrey. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.\n", null],
+//         ["A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?", null],
+//         ["Here's a link.", ]
+//     ]
+// );
 
-const about2 = new Block(
-    "url('./assets/images/JLHBitPortrait.png')",
-    "jeff",
-    "left",
-    [
-        "Jeffrey again! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.",
-        "A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?"
-    ]
-);
+// const about1 = new Block(
+//     "url('./assets/images/JLHBitPortrait.png')",
+//     "jeff",
+//     "right",
+//     [
+//         "Jeffrey again! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.",
+//         "A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?"
+//     ]
+// );
 
-const about3 = new Block(
-    "url('./assets/images/JLHBitPortrait.png')",
-    "jeff",
-    "right",
-    [
-        "Jeffrey again! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.",
-        "A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?"
-    ]
-);
+// const about2 = new Block(
+//     "url('./assets/images/JLHBitPortrait.png')",
+//     "jeff",
+//     "left",
+//     [
+//         "Jeffrey again! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.",
+//         "A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?"
+//     ]
+// );
 
-const aboutArray = [intro, about1, about2, about3];
+// const about3 = new Block(
+//     "url('./assets/images/JLHBitPortrait.png')",
+//     "jeff",
+//     "right",
+//     [
+//         "Jeffrey again! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.",
+//         "A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?"
+//     ]
+// );
+
+// const aboutArray = [intro, about1, about2, about3];
 
 function slamLeft() {
     removeListeners();
@@ -526,3 +533,107 @@ function addListeners() {
         document.getElementById(up + "Link").addEventListener("click", knockDown);
     }
 }
+
+// obj = { id imgURL imgId imgFloat text = [["text", "id"]] t spans}
+
+function Block(id, imgUrl, imgId, imgFloat, text, t, spans) {
+    this.id = id;
+    this.imgUrl = imgUrl;
+    this.imgId = imgId;
+    this.imgFloat = imgFloat;
+    this.text = text;
+    this.t = t;
+    this.spans = spans;
+}
+
+const intro = new Block(
+    "intro",
+    "url('./assets/images/JLHBitPortrait.png')",
+    "jeff",
+    "left",
+    [
+        ["Hello, this is Jeffrey. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.\n", "intro1"],
+        ["A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?", "intro2"],
+        ["Here's a link.", "jumpToPort" ]
+    ],
+    0,
+    0
+);
+
+function makeBlock(obj) {
+    const div = document.createElement("div");
+    div.setAttribute("id", obj.id);
+    const portrait = document.createElement("div");
+    portrait.setAttribute("id", obj.imgId);
+    portrait.setAttribute("class", "portraits");
+    portrait.style.cssFloat = obj.imgFloat;
+    div.appendChild(portrait);
+    about.appendChild(div);
+    setTimeout( () => {
+        portrait.style.backgroundImage = obj.imgUrl;
+        about.style.maxHeight = null;
+        newTalk(obj);
+    }, 500);
+}
+
+// there will still be iisues that have to do with when these things are going to fire/writing event liseteners for eachof them / not to mention sound
+function newTalk(obj) {
+    // animation variables
+    let pause;
+    const div = document.getElementById(obj.id);
+    const portrait = document.getElementById(obj.imgId);
+    let imgPosX = 0;
+    let string;
+    let span;
+
+    // animation constants
+    const punctuation = [".", ",", "!", "?", ";", ":", "-"];
+    const framesPerTick = 2;
+
+    function talk(timestamp) {
+        // because we only want it to keep going if we can see it
+        if (inWindow(div)) {
+            if (obj.spans < obj.text.length) {
+                if (obj.t === 0) {
+                    string = obj.text[obj.spans][0];
+                    span = document.createElement("span");
+                    span.setAttribute("id", obj.text[obj.spans][1]);
+                    // if (span.id === "jumpToPort") {
+
+                    // }
+                    div.appendChild(span);
+                }
+                if (obj.t / framesPerTick <= string.length) {
+                    obj.t++;
+                    pause = 0;
+                    // Mouth movement
+                    if (obj.t % (framesPerTick * 4) === 0) {
+                        imgPosX += 256;
+                        portrait.style.backgroundPositionX = imgPosX + "px";                       
+                    }
+                    // Letter scroll
+                    if (obj.t % framesPerTick === 0) {
+                        span.innerText = string.substring(0, obj.t/framesPerTick);
+                        if (punctuation.includes(string[(obj.t/framesPerTick) - 1])) { pause  =  250 }
+                    }
+                } else {
+                    obj.spans++;
+                    obj.t = 0;
+                    portrait.style.backgroundPositionX = "0px";
+                }
+                setTimeout( () => requestAnimationFrame(talk), pause);
+            }
+        } else {
+            document.addEventListener("scroll", animate);
+
+            function animate() {
+                if (inWindow(div)) {
+                    document.removeEventListener("scroll", animate);
+                    newTalk(obj);
+                }
+            }
+        }
+    }
+    requestAnimationFrame(talk);
+};
+
