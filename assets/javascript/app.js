@@ -517,6 +517,10 @@ function removeListeners() {
     if ( up !== "none") {
         document.getElementById(up + "Link").removeEventListener("click", knockDown);
     }
+    let jumpToPort = document.getElementById("jumpToPort");
+    if (jumpToPort !== null) {
+        jumpToPort.removeEventListener("click", portAnimation());
+    } 
 }
 
 function addListeners() {
@@ -532,6 +536,10 @@ function addListeners() {
     if ( up !== "none") {
         document.getElementById(up + "Link").addEventListener("click", knockDown);
     }
+    let jumpToPort = document.getElementById("jumpToPort");
+    if (jumpToPort !== null) {
+        jumpToPort.addEventListener("click", portAnimation());
+    } 
 }
 
 // obj = { id imgURL imgId imgFloat text = [["text", "id"]] t spans}
@@ -598,9 +606,9 @@ function newTalk(obj) {
                     string = obj.text[obj.spans][0];
                     span = document.createElement("span");
                     span.setAttribute("id", obj.text[obj.spans][1]);
-                    // if (span.id === "jumpToPort") {
-
-                    // }
+                    if (span.id === "jumpToPort") {
+                        span.addEventListener("click", portAnimation());
+                    }
                     div.appendChild(span);
                 }
                 if (obj.t / framesPerTick <= string.length) {
@@ -637,3 +645,14 @@ function newTalk(obj) {
     requestAnimationFrame(talk);
 };
 
+function portAnimation() {
+    if (up === "portfolio") {
+        return knockDown;
+    } else if (down === "portfolio") {
+        return blastUp;
+    } else if (right === "portfolio") {
+        return slamLeft;
+    } else if (left === "portfolio") {
+        return runRight;
+    }
+}
