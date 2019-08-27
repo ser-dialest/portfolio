@@ -528,7 +528,7 @@ function removeListeners() {
     let jumpToPort = document.getElementById("jumpToPort");
     if (jumpToPort !== null) {
         jumpToPort.removeEventListener("click", portAnimation());
-    } 
+    }
 }
 
 function addListeners() {
@@ -549,6 +549,9 @@ function addListeners() {
         jumpToPort.addEventListener("click", portAnimation());
     }
     newTalk(intro);
+    // console.log();
+    if (document.getElementById("about1") !== null) {newTalk(about1)};
+    if (document.getElementById("about2") !== null) {newTalk(about2)};
 }
 
 // obj = { id imgURL imgId imgFloat text = [["text", "id"]] t spans}
@@ -577,9 +580,38 @@ const intro = new Block(
     0
 );
 
+const about1 = new Block(
+    "about1",
+    "url('./assets/images/JLHBitPortrait.png')",
+    "jeff1",
+    "right",
+    [
+        ["Jeffrey again!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.\n", "about1a"],
+        ["A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?", "about1b"],
+        ["Here's a link.", "notALink" ]
+    ],
+    0,
+    0
+);
+
+const about2 = new Block(
+    "about2",
+    "url('./assets/images/JLHBitPortrait.png')",
+    "jeff2",
+    "left",
+    [
+        ["Jeffrey again again!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.\n", "about2a"],
+        ["A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?", "about2b"],
+        ["Here's a link.", "probablyALink" ]
+    ],
+    0,
+    0
+);
+
 function makeBlock(obj) {
     const div = document.createElement("div");
     div.setAttribute("id", obj.id);
+    div.style.minHeight = "300px";
     const portrait = document.createElement("div");
     portrait.setAttribute("id", obj.imgId);
     portrait.setAttribute("class", "portraits");
@@ -601,7 +633,7 @@ function newTalk(obj) {
     const portrait = document.getElementById(obj.imgId);
     let imgPosX = 0;
     // let string;
-    let string = obj.text[obj.spans][0];
+    let string;
     let span;
 
     // animation constants
@@ -612,8 +644,8 @@ function newTalk(obj) {
         // because we only want it to keep going if we can see it
         if (inWindow(div)) {
             if (obj.spans < obj.text.length) {
+                string = obj.text[obj.spans][0];
                 if (obj.t === 0) {
-                    string = obj.text[obj.spans][0];
                     span = document.createElement("span");
                     span.setAttribute("id", obj.text[obj.spans][1]);
                     if (span.id === "jumpToPort") {
@@ -641,6 +673,13 @@ function newTalk(obj) {
                     portrait.style.backgroundPositionX = "0px";
                 }
                 setTimeout( () => requestAnimationFrame(talk), pause);
+            } else {
+                // where the rest of the divisions get made
+                if (obj.id === "intro" && obj.spans === obj.text.length) {
+                    obj.spans++;
+                    makeBlock(about1);
+                    makeBlock(about2);
+                }
             }
         } else {
             document.addEventListener("scroll", animate);
