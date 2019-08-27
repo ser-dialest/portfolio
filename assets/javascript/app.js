@@ -18,8 +18,15 @@ let right = "portfolio";
 let left = "none";
 
 function inWindow(element) {
+    // need to add horizontal check as well to discontinue animation when about is pushed to the left
     var placement = element.getBoundingClientRect();
-    return ((placement.top >= 0 && placement.top <= window.innerHeight) || placement.bottom <= window.innerHeight);
+    // return ((placement.top >= 0 && placement.top <= window.innerHeight) || placement.bottom <= window.innerHeight);
+    return (
+        ((placement.top <= window.innerHeight && placement.bottom >= 0) ||
+        (placement.top <= 0 && placement.bottom >= window.innerHeight)) &&
+        ((placement.left >= 0 && placement.right <= window.innerWidth) ||
+        (placement.left <= 0 && placement.right >= window.innerWidth)) 
+    )
 };
 
 function initialize() {
@@ -601,6 +608,7 @@ function newTalk(obj) {
     function talk(timestamp) {
         // because we only want it to keep going if we can see it
         if (inWindow(div)) {
+            console.log(inWindow(div));
             if (obj.spans < obj.text.length) {
                 if (obj.t === 0) {
                     string = obj.text[obj.spans][0];
