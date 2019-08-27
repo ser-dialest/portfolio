@@ -20,12 +20,13 @@ let left = "none";
 function inWindow(element) {
     // need to add horizontal check as well to discontinue animation when about is pushed to the left
     var placement = element.getBoundingClientRect();
+    // console.table([placement.top, placement.bottom, placement.left, placement.right], ["top", "bottom", "left", "right"]);
     // return ((placement.top >= 0 && placement.top <= window.innerHeight) || placement.bottom <= window.innerHeight);
     return (
-        ((placement.top <= window.innerHeight && placement.bottom >= 0) ||
-        (placement.top <= 0 && placement.bottom >= window.innerHeight)) &&
-        ((placement.left >= 0 && placement.right <= window.innerWidth) ||
-        (placement.left <= 0 && placement.right >= window.innerWidth)) 
+        ((placement.top < window.innerHeight && placement.bottom > 0) ||
+        (placement.top < 0 && placement.bottom > window.innerHeight)) &&
+        ((placement.left > 0 && placement.right < window.innerWidth) ||
+        (placement.left < 0 && placement.right > window.innerWidth)) 
     )
 };
 
@@ -546,7 +547,8 @@ function addListeners() {
     let jumpToPort = document.getElementById("jumpToPort");
     if (jumpToPort !== null) {
         jumpToPort.addEventListener("click", portAnimation());
-    } 
+    }
+    newTalk(intro);
 }
 
 // obj = { id imgURL imgId imgFloat text = [["text", "id"]] t spans}
@@ -598,7 +600,8 @@ function newTalk(obj) {
     const div = document.getElementById(obj.id);
     const portrait = document.getElementById(obj.imgId);
     let imgPosX = 0;
-    let string;
+    // let string;
+    let string = obj.text[obj.spans][0];
     let span;
 
     // animation constants
@@ -608,7 +611,6 @@ function newTalk(obj) {
     function talk(timestamp) {
         // because we only want it to keep going if we can see it
         if (inWindow(div)) {
-            console.log(inWindow(div));
             if (obj.spans < obj.text.length) {
                 if (obj.t === 0) {
                     string = obj.text[obj.spans][0];
@@ -630,7 +632,7 @@ function newTalk(obj) {
                     }
                     // Letter scroll
                     if (obj.t % framesPerTick === 0) {
-                        span.innerText = string.substring(0, obj.t/framesPerTick);
+                        document.getElementById(obj.text[obj.spans][1]).innerText = string.substring(0, obj.t/framesPerTick);
                         if (punctuation.includes(string[(obj.t/framesPerTick) - 1])) { pause  =  250 }
                     }
                 } else {
