@@ -616,6 +616,7 @@ function makeBlock(obj) {
     const div = document.createElement("div");
     div.setAttribute("id", obj.id);
     div.style.minHeight = "300px";
+    about.style.maxHeight = (about.offsetHeight + window.innerHeight) + "px";
     const portrait = document.createElement("div");
     portrait.setAttribute("id", obj.imgId);
     portrait.setAttribute("class", "portraits");
