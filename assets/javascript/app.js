@@ -548,22 +548,28 @@ function addListeners() {
     if (jumpToPort !== null) {
         jumpToPort.addEventListener("click", portAnimation());
     }
-    newTalk(intro);
-    // console.log();
-    if (document.getElementById("about1") !== null) {newTalk(about1)};
-    if (document.getElementById("about2") !== null) {newTalk(about2)};
+    animate();
+    // newTalk(intro);
+    // // console.log();
+    // if (document.getElementById("about1") !== null) {
+    //     console.log("about1");
+    //     newTalk(about1)};
+    // if (document.getElementById("about2") !== null) {
+    //     console.log("about2");
+    //     newTalk(about2)};
 }
 
 // obj = { id imgURL imgId imgFloat text = [["text", "id"]] t spans}
 
-function Block(id, imgUrl, imgId, imgFloat, text, t, spans) {
+function Block(id, imgUrl, imgId, imgFloat, text) {
     this.id = id;
     this.imgUrl = imgUrl;
     this.imgId = imgId;
     this.imgFloat = imgFloat;
     this.text = text;
-    this.t = t;
-    this.spans = spans;
+    this.t = 0;
+    this.spans = 0;
+    this.running = false;
 }
 
 const intro = new Block(
@@ -575,9 +581,7 @@ const intro = new Block(
         ["Hello, this is Jeffrey. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.\n", "intro1"],
         ["A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?", "intro2"],
         ["Here's a link.", "jumpToPort" ]
-    ],
-    0,
-    0
+    ]
 );
 
 const about1 = new Block(
@@ -589,9 +593,7 @@ const about1 = new Block(
         ["Jeffrey again!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.\n", "about1a"],
         ["A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?", "about1b"],
         ["Here's a link.", "notALink" ]
-    ],
-    0,
-    0
+    ]
 );
 
 const about2 = new Block(
@@ -603,10 +605,12 @@ const about2 = new Block(
         ["Jeffrey again again!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.\n", "about2a"],
         ["A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?", "about2b"],
         ["Here's a link.", "probablyALink" ]
-    ],
-    0,
-    0
+    ]
 );
+
+const aboutArray = [intro, about1, about2];
+
+
 
 function makeBlock(obj) {
     const div = document.createElement("div");
@@ -625,8 +629,29 @@ function makeBlock(obj) {
     }, 500);
 }
 
+let scrollEvent = false;
+
+function animate() {
+    console.log("animate is active");
+    document.removeEventListener("scroll", animate);
+    scrollEvent = false;
+
+    for (let i = 0; i < aboutArray.length; i++) {
+        let div = document.getElementById(aboutArray[i].id);
+        if (div !== null && !aboutArray[i].running) {
+            newTalk(aboutArray[i]);
+        }
+    }
+}
+
 // there will still be iisues that have to do with when these things are going to fire/writing event liseteners for eachof them / not to mention sound
 function newTalk(obj) {
+    
+    // if (scrollEvent) {
+    //     console.log(scrollEvent);
+    //     document.removeEventListener("scroll", animate);
+    // }
+
     // animation variables
     let pause;
     const div = document.getElementById(obj.id);
@@ -643,6 +668,7 @@ function newTalk(obj) {
     function talk(timestamp) {
         // because we only want it to keep going if we can see it
         if (inWindow(div)) {
+            obj.running = true;
             if (obj.spans < obj.text.length) {
                 string = obj.text[obj.spans][0];
                 if (obj.t === 0) {
@@ -682,13 +708,11 @@ function newTalk(obj) {
                 }
             }
         } else {
-            document.addEventListener("scroll", animate);
-
-            function animate() {
-                if (inWindow(div)) {
-                    document.removeEventListener("scroll", animate);
-                    newTalk(obj);
-                }
+            obj.running = false;
+            if (!scrollEvent) {
+                console.log(obj.id, scrollEvent);
+                document.addEventListener("scroll", animate);
+                scrollEvent = true;
             }
         }
     }
