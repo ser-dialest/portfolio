@@ -128,3 +128,20 @@ nav li span {
     color: #3e0ce8;
     cursor: pointer;
 }
+
+.portImg {
+    float: left;
+    margin: .5em;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 256px;
+}
+
+.collapse {
+    transition: max-height .5s linear;
+}
