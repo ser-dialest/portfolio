@@ -731,3 +731,26 @@ function portAnimation() {
         return runRight;
     }
 }
+
+function expand(event) {
+    const button = event.target;
+    console.log(button);
+    button.removeEventListener("click", expand);
+    const div = document.getElementById(button.id + "Text");
+    div.style.maxHeight = (div.offsetHeight + window.innerHeight) + "px";
+    button.addEventListener("click", collapse);
+}
+
+function collapse(event) {
+    const button = event.target;
+    button.removeEventListener("click", collapse);
+    document.getElementById(button.id + "Text").style.maxHeight = 0 + "px";
+    button.addEventListener("click", expand);
+}
+
+const expanders = document.getElementsByClassName("expander");
+
+for (let i = 0; i < expanders.length; i++) {
+    console.log(expanders[i]);
+  expanders[i].addEventListener("click", expand);
+}

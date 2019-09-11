@@ -139,9 +139,15 @@ nav li span {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: 100%;
     min-height: 256px;
+    margin: .5em;
+
 }
 
 .collapse {
+    overflow: hidden;
+    position: relative;
+    max-height: 0px;
     transition: max-height .5s linear;
 }
