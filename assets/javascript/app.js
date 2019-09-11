@@ -20,8 +20,6 @@ let left = "none";
 function inWindow(element) {
     // need to add horizontal check as well to discontinue animation when about is pushed to the left
     var placement = element.getBoundingClientRect();
-    // console.table([placement.top, placement.bottom, placement.left, placement.right], ["top", "bottom", "left", "right"]);
-    // return ((placement.top >= 0 && placement.top <= window.innerHeight) || placement.bottom <= window.innerHeight);
     return (
         ((placement.top < window.innerHeight && placement.bottom > 0) ||
         (placement.top < 0 && placement.bottom > window.innerHeight)) &&
@@ -64,102 +62,6 @@ function initialize() {
         about.style.padding = "36px";
 
         makeBlock(intro);
-
-    // Trying new talk
-    //     // Counters
-    //     let i = 0;
-    //     let j = 0;
-    //     let t = -2;
-
-    //     // animation variables
-    //     let string;
-    //     let p;
-    //     let pause;
-    //     let paragraph;
-    //     let portrait;
-    //     let imgPosX = 0;
-    //     let aboutHeight = 0;
-    //     let paragraphEnd = false;
-
-    //     // animation constants
-    //     const punctuation = [".", ",", "!", "?", ";", ":", "-"];
-    //     const framesPerTick = 2;
-
-    //     function talking(timestamp) {
-    //         if (i < aboutArray.length) {
-    //             if (t === -2) {
-    //                 t++;
-    //                 paragraphEnd = false;
-    //                 aboutHeight = about.offsetHeight;
-    //                 if (i > 0) {
-    //                     const br = document.createElement("br");
-    //                     about.appendChild(br);
-    //                 }
-    //                 portrait = document.createElement("div");
-    //                 portrait.setAttribute("id", aboutArray[i].imgId);
-    //                 portrait.setAttribute("class", "portraits");
-    //                 portrait.style.cssFloat = aboutArray[i].imgFloat;
-    //                 about.appendChild(portrait);
-    //                 setTimeout( () => {
-    //                     portrait.style.backgroundImage = aboutArray[i].imgUrl;
-    //                     about.style.maxHeight = null;
-    //                     if (inWindow(portrait)) {
-    //                         requestAnimationFrame(talking);
-    //                     } else {
-    //                         document.addEventListener("scroll", animate);
-
-    //                         function animate() {
-    //                             if (inWindow(portrait)) {
-    //                                 document.removeEventListener("scroll", animate);
-    //                                 requestAnimationFrame(talking);
-    //                             }
-    //                         }
-    //                     }
-    //                 }, 500);
-    //                 about.style.maxHeight = (aboutHeight +1000) + "px";
-    //                 paragraph = aboutArray[i].text;
-    //             } else if (j < paragraph.length) {
-    //                 t++;
-    //                 pause = 0;
-    //                 if (t === 0) {
-    //                     string = paragraph[j];
-    //                     p = document.createElement('p');
-    //                     about.appendChild(p);
-    //                 }
-    //                 if (t <= string.length * framesPerTick) {
-    //                     // Mouth movement
-    //                     if (t % (framesPerTick * 4) === 0) {
-    //                         imgPosX += 256;
-    //                         portrait.style.backgroundPositionX = imgPosX + "px";                       
-    //                     }
-    //                     // Letter scroll
-    //                     if (t % framesPerTick === 0) {
-    //                         p.innerText = string.substring(0, t/framesPerTick);
-    //                         if (punctuation.includes(paragraph[j][(t/framesPerTick) - 1])) { pause  =  250 }
-    //                     }
-    //                 } else {
-    //                     j++;
-    //                     t = -1;
-    //                     portrait.style.backgroundPositionX = "0px";
-    //                 }
-    //                 setTimeout( () => requestAnimationFrame(talking), pause);
-    //             } else if (!paragraphEnd) {
-    //                 paragraphEnd = true;
-    //                 aboutHeight = about.offsetHeight;
-    //                 about.style.maxHeight = aboutHeight + "px";
-
-    //                 setTimeout( () => {
-    //                     i++;
-    //                     j = 0;
-    //                     t = -2;
-    //                     requestAnimationFrame(talking)
-    //                 }, 1500);
-    //             }
-    //         } else {
-    //             about.style.maxHeight = "100000px";
-    //         }
-    //     }
-    //     requestAnimationFrame(talking);
     };
     
     const cursor = document.getElementById("cursor");
@@ -182,58 +84,6 @@ function initialize() {
 }
 
 initialize();
-
-// Trying this a new way
-
-// function Block(imgUrl, imgId, imgFloat, text) {
-//     this.imgUrl = imgUrl;
-//     this.imgId = imgId;
-//     this.imgFloat = imgFloat;
-//     this.text = text;
-// }
-
-// const intro = new Block(
-//     "url('./assets/images/JLHBitPortrait.png')",
-//     "jeff",
-//     "left",
-//     [
-//         ["Hello, this is Jeffrey. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.\n", null],
-//         ["A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?", null],
-//         ["Here's a link.", ]
-//     ]
-// );
-
-// const about1 = new Block(
-//     "url('./assets/images/JLHBitPortrait.png')",
-//     "jeff",
-//     "right",
-//     [
-//         "Jeffrey again! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.",
-//         "A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?"
-//     ]
-// );
-
-// const about2 = new Block(
-//     "url('./assets/images/JLHBitPortrait.png')",
-//     "jeff",
-//     "left",
-//     [
-//         "Jeffrey again! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.",
-//         "A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?"
-//     ]
-// );
-
-// const about3 = new Block(
-//     "url('./assets/images/JLHBitPortrait.png')",
-//     "jeff",
-//     "right",
-//     [
-//         "Jeffrey again! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.",
-//         "A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?"
-//     ]
-// );
-
-// const aboutArray = [intro, about1, about2, about3];
 
 function slamLeft() {
     removeListeners();
@@ -549,17 +399,7 @@ function addListeners() {
         jumpToPort.addEventListener("click", portAnimation());
     }
     animate();
-    // newTalk(intro);
-    // // console.log();
-    // if (document.getElementById("about1") !== null) {
-    //     console.log("about1");
-    //     newTalk(about1)};
-    // if (document.getElementById("about2") !== null) {
-    //     console.log("about2");
-    //     newTalk(about2)};
 }
-
-// obj = { id imgURL imgId imgFloat text = [["text", "id"]] t spans}
 
 function Block(id, imgUrl, imgId, imgFloat, text) {
     this.id = id;
@@ -633,7 +473,6 @@ function makeBlock(obj) {
 let scrollEvent = false;
 
 function animate() {
-    console.log("animate is active");
     document.removeEventListener("scroll", animate);
     scrollEvent = false;
 
@@ -645,13 +484,7 @@ function animate() {
     }
 }
 
-// there will still be iisues that have to do with when these things are going to fire/writing event liseteners for eachof them / not to mention sound
 function newTalk(obj) {
-    
-    // if (scrollEvent) {
-    //     console.log(scrollEvent);
-    //     document.removeEventListener("scroll", animate);
-    // }
 
     // animation variables
     let pause;
@@ -711,7 +544,6 @@ function newTalk(obj) {
         } else {
             obj.running = false;
             if (!scrollEvent) {
-                console.log(obj.id, scrollEvent);
                 document.addEventListener("scroll", animate);
                 scrollEvent = true;
             }
@@ -734,7 +566,6 @@ function portAnimation() {
 
 function expand(event) {
     const button = event.target;
-    console.log(button);
     button.removeEventListener("click", expand);
     const div = document.getElementById(button.id + "Text");
     div.style.maxHeight = (div.offsetHeight + window.innerHeight) + "px";
@@ -751,6 +582,5 @@ function collapse(event) {
 const expanders = document.getElementsByClassName("expander");
 
 for (let i = 0; i < expanders.length; i++) {
-    console.log(expanders[i]);
-  expanders[i].addEventListener("click", expand);
+    expanders[i].addEventListener("click", expand);
 }
