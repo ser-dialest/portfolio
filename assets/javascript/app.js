@@ -455,8 +455,11 @@ const aboutArray = [intro, about1, about2];
 function makeBlock(obj) {
     const div = document.createElement("div");
     div.setAttribute("id", obj.id);
-    div.style.minHeight = "300px";
+    div.style.minHeight = "256px";
     about.style.maxHeight = (about.offsetHeight + window.innerHeight) + "px";
+    if (div.id !== "intro") {
+        div.style.marginTop = "15vh";
+    }
     const portrait = document.createElement("div");
     portrait.setAttribute("id", obj.imgId);
     portrait.setAttribute("class", "portraits");
