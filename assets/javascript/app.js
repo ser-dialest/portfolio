@@ -379,6 +379,10 @@ function removeListeners() {
     if (jumpToPort !== null) {
         jumpToPort.removeEventListener("click", portAnimation());
     }
+    let jumpToPort2 = document.getElementById("jumpToPort2");
+    if (jumpToPort2 !== null) {
+        jumpToPort2.removeEventListener("click", portAnimation());
+    }
 }
 
 function addListeners() {
@@ -397,6 +401,10 @@ function addListeners() {
     let jumpToPort = document.getElementById("jumpToPort");
     if (jumpToPort !== null) {
         jumpToPort.addEventListener("click", portAnimation());
+    }
+    let jumpToPort2 = document.getElementById("jumpToPort2");
+    if (jumpToPort2 !== null) {
+        jumpToPort2.addEventListener("click", portAnimation());
     }
     animate();
 }
@@ -418,9 +426,9 @@ const intro = new Block(
     "jeff",
     "left",
     [
-        ["Hello, this is Jeffrey. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.\n", "intro1"],
-        ["A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?", "intro2"],
-        ["Here's a link.", "jumpToPort" ]
+        ["Hello! My name is Jeffrey Lloyd Heatherly. Thanks so much for stopping by.\n", "intro1"],
+        ["I'd like to take a moment to tell you a bit about the kind of developer I am, but if you'd rather jump straight over to the projects I've been working on, you can find them ", "intro2"],
+        ["right here.", "jumpToPort" ]
     ]
 );
 
@@ -430,9 +438,9 @@ const about1 = new Block(
     "jeff1",
     "right",
     [
-        ["Jeffrey again!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.\n", "about1a"],
-        ["A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?", "about1b"],
-        ["Here's a link.", "notALink" ]
+        ["I'm a full-stack web developer who works primarily in Javascript, jQuery, and React.\n", "about1a"],
+        ["I've been using Node.js and Express to execute the back ends of my projects, serving files, accessing APIs, and interacting with databases like MySQL and MongoDB.\n", "about1b"],
+        ["I am also familiar with a variety of frameworks like Bootstrap and Handlebars.", "about1c"],
     ]
 );
 
@@ -442,13 +450,54 @@ const about2 = new Block(
     "jeff2",
     "left",
     [
-        ["Jeffrey again again!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa modi provident, officia vitae saepe placeat perspiciatis repellat aliquid iusto tenetur omnis.\n", "about2a"],
-        ["A button for the portfolio Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum sequi, assumenda iure maiores, modi atque corrupti odio suscipit?", "about2b"],
-        ["Here's a link.", "probablyALink" ]
+        ["Before learning to program, I worked as a tutor, and though I specialized in mathematics and the structure of English, I've led students to success in a wide range of subjects.\n", "about2a"],
+        ["This was not because I already knew everything about the subjects they were trying to learn (I didn't), but because a person can learn anything if they believe they can and are willing to put in the work - and there's nothing I believe I cannot learn.\n", "about2b"],
+        ["I also don't consider something learned unless I can explain it, so if you need something done with a tool I'm not an expert with yet (or maybe haven't even heard of), or if you need something explained to a client or colleague so they can make use of that resource, I can do that for you.", "about2c" ]
     ]
 );
 
-const aboutArray = [intro, about1, about2];
+const about3 = new Block(
+    "about3",
+    "url('./assets/images/JLHBitPortrait.png')",
+    "jeff3",
+    "right",
+    [
+        ["Communicating with clients and colleagues is a skill I've honed over a decade of customer service experience. I've worked on every level from manning a register to leading the customer service department of a multi-million dollar company.\n", "about3a"],
+        ["This means I've been charged not just with with assisting those clients who have proven themselves to be the most difficult to help, but training and supervising teams responsible for setting clients' expectations and making sure they are met.", "about3b"],
+    ]
+);
+
+const about4 = new Block(
+    "about4",
+    "url('./assets/images/JLHBitPortrait.png')",
+    "jeff4",
+    "left",
+    [
+        ["I'm also a member of the Actors' Equity Association, which is the union for professional stage actors in the United States. Being a professional actor doesn't sound like it has much to do with being a developer, but you'd be surprised.\n", "about4a"],
+        ["Actors bring into reality that which was only an idea before. They find creative solutions to challenges presented by an extensive and highly specific set of parameters called a script, and they do so under in accordance with the plans of a director.\n", "about4b"],
+        ["Actors are people who create something new while doing what they're told. They change themselves to meet the needs of the assignment - project after project after project.", "about2c" ]
+    ]
+);
+
+const about5 = new Block(
+    "about5",
+    "url('./assets/images/JLHBitPortrait.png')",
+    "jeff5",
+    "right",
+    [
+        ["If you've come this far, you've seen a lot of different Jeffreys. That's because I am a lot of different Jeffreys! And if you need something done, one of them can make it happen for you.\n", "about5a"],
+        ["If you would like some more evidence of what I can do, please head over to my ", "about5b"],
+        ["portfolio ", "jumpToPort2" ],
+        ["where you can see a handful of the projects I'm working on. I'd especially like it if you spent a couple minutes checking out the game I've been making, ", "about5c"],
+        ["Safe Hamlet.\n", "safeHamletLink" ],
+        ["If you'd like to contact me, I'd love to be contacted by you! Please check out the ", "about5d"],
+        ["contacts ", "jumpToContacts"],
+        ["section of this page for all the ways you can reach me.\nThanks again for stopping by! Have a great day!\n","about5e"],
+        ["\n - Jeffrey Lloyd Heatherly","about5f"],
+    ]
+);
+
+const aboutArray = [intro, about1, about2, about3, about4, about5];
 
 
 
@@ -511,7 +560,7 @@ function newTalk(obj) {
                 if (obj.t === 0) {
                     span = document.createElement("span");
                     span.setAttribute("id", obj.text[obj.spans][1]);
-                    if (span.id === "jumpToPort") {
+                    if (span.id === "jumpToPort" || span.id === "jumpToPort2") {
                         span.addEventListener("click", portAnimation());
                         span.style.textDecoration = "underline";
                     }
@@ -540,8 +589,10 @@ function newTalk(obj) {
                 // where the rest of the divisions get made
                 if (obj.id === "intro" && obj.spans === obj.text.length) {
                     obj.spans++;
-                    makeBlock(about1);
-                    makeBlock(about2);
+                    for (let i = 1; i < aboutArray.length; i++) {
+                        console.log(i, aboutArray[i]);
+                        makeBlock(aboutArray[i]);
+                    }
                 }
             }
         } else {

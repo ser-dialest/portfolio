@@ -42,7 +42,8 @@ p {
 
 #about span {
     font-size: 2em;
-    margin: .5em;
+    /* margin-top: .5em; */
+    /* display: inline-block; */
 }
 
 nav {
@@ -107,7 +108,8 @@ nav li span {
 }
 
 .portraits {
-    margin: .5em;
+    margin-left: .5em;
+    margin-right: .5em;
     height: 256px;
     width: 256px;
 }
@@ -125,6 +127,11 @@ nav li span {
 }
 
 #jumpToPort:hover {
+    color: #3e0ce8;
+    cursor: pointer;
+}
+
+#jumpToPort2:hover {
     color: #3e0ce8;
     cursor: pointer;
 }
