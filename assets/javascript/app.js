@@ -383,6 +383,10 @@ function removeListeners() {
     if (jumpToPort2 !== null) {
         jumpToPort2.removeEventListener("click", portAnimation());
     }
+    let jumpToContacts = document.getElementById("jumpToContacts");
+    if (jumpToContacts !== null) {
+        jumpToContacts.removeEventListener("click", contactAnimation());
+    }
 }
 
 function addListeners() {
@@ -405,6 +409,10 @@ function addListeners() {
     let jumpToPort2 = document.getElementById("jumpToPort2");
     if (jumpToPort2 !== null) {
         jumpToPort2.addEventListener("click", portAnimation());
+    }
+    let jumpToContacts = document.getElementById("jumpToContacts");
+    if (jumpToContacts !== null) {
+        jumpToContacts.addEventListener("click", contactAnimation());
     }
     animate();
 }
@@ -563,6 +571,12 @@ function newTalk(obj) {
                     if (span.id === "jumpToPort" || span.id === "jumpToPort2") {
                         span.addEventListener("click", portAnimation());
                         span.style.textDecoration = "underline";
+                    } else if (span.id === "safeHamletLink") {
+                        span.addEventListener("click", () => window.open('http://safehamlet.com'));
+                        span.style.textDecoration = "underline";
+                    } else if (span.id === "jumpToContacts") {
+                        span.addEventListener("click", contactAnimation());
+                        span.style.textDecoration = "underline";
                     }
                     div.appendChild(span);
                 }
@@ -614,6 +628,18 @@ function portAnimation() {
     } else if (right === "portfolio") {
         return slamLeft;
     } else if (left === "portfolio") {
+        return runRight;
+    }
+}
+
+function contactAnimation() {
+    if (up === "contact") {
+        return knockDown;
+    } else if (down === "contact") {
+        return blastUp;
+    } else if (right === "contact") {
+        return slamLeft;
+    } else if (left === "contact") {
         return runRight;
     }
 }

@@ -136,6 +136,16 @@ nav li span {
     cursor: pointer;
 }
 
+#jumpToContacts:hover {
+    color: #3e0ce8;
+    cursor: pointer;
+}
+
+#safeHamletLink:hover {
+    color: #3e0ce8;
+    cursor: pointer;
+}
+
 .portImg {
     float: left;
     margin: .5em;
