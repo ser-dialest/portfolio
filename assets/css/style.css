@@ -157,7 +157,7 @@ nav li span {
     align-items: center;
     flex-direction: column;
     height: 100%;
-    min-height: 256px;
+    min-height: 384px;
     margin: .5em;
 
 }

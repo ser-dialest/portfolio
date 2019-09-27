@@ -482,8 +482,8 @@ const about4 = new Block(
     "left",
     [
         ["I'm also a member of the Actors' Equity Association, which is the union for professional stage actors in the United States. Being a professional actor doesn't sound like it has much to do with being a developer, but you'd be surprised.\n", "about4a"],
-        ["Actors bring into reality that which was only an idea before. They find creative solutions to challenges presented by an extensive and highly specific set of parameters called a script, and they do so under in accordance with the plans of a director.\n", "about4b"],
-        ["Actors are people who create something new while doing what they're told. They change themselves to meet the needs of the assignment - project after project after project.", "about2c" ]
+        ["Actors bring into reality that which was only an idea before. They find creative solutions to challenges presented by an extensive and highly specific set of parameters called a script while following the plans of a director.\n", "about4b"],
+        ["Actors are people who create something new while doing what they're told. They change themselves to meet the needs of the assignment - project after project after project.", "about4c" ]
     ]
 );
 
