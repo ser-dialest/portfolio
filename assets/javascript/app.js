@@ -454,7 +454,7 @@ const about1 = new Block(
 
 const about2 = new Block(
     "about2",
-    "url('./assets/images/JLHBitPortrait.png')",
+    "url('./assets/images/HigginsPortrait.png')",
     "jeff2",
     "left",
     [
