@@ -454,7 +454,7 @@ const about1 = new Block(
 
 const about2 = new Block(
     "about2",
-    "url('./assets/images/HigginsPortrait.png')",
+    "url('./assets/images/ToudouPortrait.png')",
     "jeff2",
     "left",
     [
@@ -477,7 +477,7 @@ const about3 = new Block(
 
 const about4 = new Block(
     "about4",
-    "url('./assets/images/ToudouPortrait.png')",
+    "url('./assets/images/HigginsPortrait.png')",
     "jeff4",
     "left",
     [
@@ -489,7 +489,7 @@ const about4 = new Block(
 
 const about5 = new Block(
     "about5",
-    "url('./assets/images/JLHBitPortrait.png')",
+    "url('./assets/images/ReversePortrait.png')",
     "jeff5",
     "right",
     [
