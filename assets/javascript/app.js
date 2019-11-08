@@ -442,7 +442,7 @@ const intro = new Block(
 
 const about1 = new Block(
     "about1",
-    "url('./assets/images/JLHBitPortrait.png')",
+    "url('./assets/images/LightPortrait.png')",
     "jeff1",
     "right",
     [
