@@ -35,6 +35,7 @@ function initialize() {
     function clear() {
         document.removeEventListener("click", clear);
         document.getElementById("start").style.display = "none";
+        document.body.style.cursor = "initial";
         setTimeout(introduction, 500);
     }
 
