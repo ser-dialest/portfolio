@@ -63,10 +63,11 @@ function initialize() {
 
         makeBlock(intro);
     };
-    
+
     const cursor = document.getElementById("cursor");
     let uninitialized = true;
     let t = 0;
+    document.body.style.cursor = "pointer";
 
     function blink(timestamp) {
         if (uninitialized) {
