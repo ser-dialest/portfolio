@@ -29,7 +29,7 @@ function inWindow(element) {
 };
 
 function initialize() {
-    
+    console.log("initialized");
     document.addEventListener("click", clear);
     
     function clear() {
@@ -83,7 +83,12 @@ function initialize() {
     requestAnimationFrame(blink);
 }
 
-initialize();
+window.addEventListener("DOMContentLoaded", () => {
+        console.log("DOM loaded");
+        initialize();
+    }
+);
+
 
 function slamLeft() {
     removeListeners();
