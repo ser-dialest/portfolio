@@ -437,7 +437,7 @@ function Block(id, imgUrl, imgId, imgFloat, text) {
 
 const intro = new Block(
     "intro",
-    "url('./assets/images/JLHBitPortrait.png')",
+    "url('./assets/images/JLHBitSheet1.png')",
     "jeff",
     "left",
     [
@@ -449,7 +449,7 @@ const intro = new Block(
 
 const about1 = new Block(
     "about1",
-    "url('./assets/images/LightPortrait.png')",
+    "url('./assets/images/LightSheet1.png')",
     "jeff1",
     "right",
     [
@@ -461,7 +461,7 @@ const about1 = new Block(
 
 const about2 = new Block(
     "about2",
-    "url('./assets/images/ToudouPortrait.png')",
+    "url('./assets/images/ToudouSheet1.png')",
     "jeff2",
     "left",
     [
@@ -473,7 +473,7 @@ const about2 = new Block(
 
 const about3 = new Block(
     "about3",
-    "url('./assets/images/CaoCaoPortrait.png')",
+    "url('./assets/images/CaoCaoSheet1.png')",
     "jeff3",
     "right",
     [
@@ -484,7 +484,7 @@ const about3 = new Block(
 
 const about4 = new Block(
     "about4",
-    "url('./assets/images/HigginsPortrait.png')",
+    "url('./assets/images/HigginsSheet1.png')",
     "jeff4",
     "left",
     [
@@ -496,7 +496,7 @@ const about4 = new Block(
 
 const about5 = new Block(
     "about5",
-    "url('./assets/images/ReversePortrait.png')",
+    "url('./assets/images/ReverseSheet1.png')",
     "jeff5",
     "right",
     [
@@ -519,7 +519,7 @@ const aboutArray = [intro, about1, about2, about3, about4, about5];
 function makeBlock(obj) {
     const div = document.createElement("div");
     div.setAttribute("id", obj.id);
-    div.style.minHeight = "256px";
+    div.style.minHeight = "96px";
     about.style.maxHeight = (about.offsetHeight + window.innerHeight) + "px";
     if (div.id !== "intro") {
         div.style.marginTop = "15vh";
@@ -592,7 +592,7 @@ function newTalk(obj) {
                     pause = 0;
                     // Mouth movement
                     if (obj.t % (framesPerTick * 4) === 0) {
-                        imgPosX += 256;
+                        imgPosX += 96;
                         portrait.style.backgroundPositionX = imgPosX + "px";                       
                     }
                     // Letter scroll
