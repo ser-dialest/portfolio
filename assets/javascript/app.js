@@ -17,8 +17,12 @@ let down = "none";
 let right = "portfolio";
 let left = "none";
 
+let width; // width in pixels of window
+let portraitSize; // width in pixels of image
+let portraitCSS; // text value for style of iamge
+
+// Check if an element is visible
 function inWindow(element) {
-    // need to add horizontal check as well to discontinue animation when about is pushed to the left
     var placement = element.getBoundingClientRect();
     return (
         ((placement.top < window.innerHeight && placement.bottom > 0) ||
@@ -28,9 +32,38 @@ function inWindow(element) {
     )
 };
 
+function updateWindowDimensions() {
+    width = window.innerWidth;
+    portraitSize = Math.floor(width / 5);
+    portraitCSS = portraitSize + "px";
+    console.log(portraitCSS);
+}
+
 function initialize() {
     console.log("initialized");
     document.addEventListener("click", clear);
+    
+    updateWindowDimensions();
+    window.addEventListener("resize", updateWindowDimensions);
+
+    const cursor = document.getElementById("cursor");
+    let uninitialized = true;
+    let t = 0;
+    document.body.style.cursor = "pointer";
+
+    function blink(timestamp) {
+        if (uninitialized) {
+            t++;
+            if (t % 60 === 0) {
+                cursor.innerHTML = " "
+            } else if (t % 30 === 0) {
+                cursor.innerHTML = "_"
+            }
+            requestAnimationFrame(blink);
+        }
+    }
+
+    requestAnimationFrame(blink);
     
     function clear() {
         document.removeEventListener("click", clear);
@@ -65,24 +98,6 @@ function initialize() {
         makeBlock(intro);
     };
 
-    const cursor = document.getElementById("cursor");
-    let uninitialized = true;
-    let t = 0;
-    document.body.style.cursor = "pointer";
-
-    function blink(timestamp) {
-        if (uninitialized) {
-            t++;
-            if (t % 60 === 0) {
-                cursor.innerHTML = " "
-            } else if (t % 30 === 0) {
-                cursor.innerHTML = "_"
-            }
-            requestAnimationFrame(blink);
-        }
-    }
-
-    requestAnimationFrame(blink);
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -437,7 +452,7 @@ function Block(id, imgUrl, imgId, imgFloat, text) {
 
 const intro = new Block(
     "intro",
-    "url('./assets/images/JLHBitSheet1.png')",
+    "url('./assets/images/JLHBitSheet3.png')",
     "jeff",
     "left",
     [
@@ -449,7 +464,7 @@ const intro = new Block(
 
 const about1 = new Block(
     "about1",
-    "url('./assets/images/LightSheet1.png')",
+    "url('./assets/images/LightSheet3.png')",
     "jeff1",
     "right",
     [
@@ -461,7 +476,7 @@ const about1 = new Block(
 
 const about2 = new Block(
     "about2",
-    "url('./assets/images/ToudouSheet1.png')",
+    "url('./assets/images/ToudouSheet3.png')",
     "jeff2",
     "left",
     [
@@ -473,7 +488,7 @@ const about2 = new Block(
 
 const about3 = new Block(
     "about3",
-    "url('./assets/images/CaoCaoSheet1.png')",
+    "url('./assets/images/CaoCaoSheet3.png')",
     "jeff3",
     "right",
     [
@@ -484,7 +499,7 @@ const about3 = new Block(
 
 const about4 = new Block(
     "about4",
-    "url('./assets/images/HigginsSheet1.png')",
+    "url('./assets/images/HigginsSheet3.png')",
     "jeff4",
     "left",
     [
@@ -496,7 +511,7 @@ const about4 = new Block(
 
 const about5 = new Block(
     "about5",
-    "url('./assets/images/ReverseSheet1.png')",
+    "url('./assets/images/ReverseSheet3.png')",
     "jeff5",
     "right",
     [
@@ -519,7 +534,7 @@ const aboutArray = [intro, about1, about2, about3, about4, about5];
 function makeBlock(obj) {
     const div = document.createElement("div");
     div.setAttribute("id", obj.id);
-    div.style.minHeight = "96px";
+    div.style.minHeight = "288px";
     about.style.maxHeight = (about.offsetHeight + window.innerHeight) + "px";
     if (div.id !== "intro") {
         div.style.marginTop = "15vh";
@@ -592,7 +607,7 @@ function newTalk(obj) {
                     pause = 0;
                     // Mouth movement
                     if (obj.t % (framesPerTick * 4) === 0) {
-                        imgPosX += 96;
+                        imgPosX += 288;
                         portrait.style.backgroundPositionX = imgPosX + "px";                       
                     }
                     // Letter scroll
