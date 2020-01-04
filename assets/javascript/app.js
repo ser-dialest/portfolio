@@ -29,11 +29,11 @@ let portraitSize; // width in pixels of image
 let portraitCSS; // text value for style of iamge
 
 let notResizing = true;
+let delay = 500;
 
 // Check if an element is visible
 function inWindow(element) {
     var placement = element.getBoundingClientRect();
-    console.log(notResizing);
     return (
         ((placement.top < window.innerHeight && placement.bottom > 0) ||
         (placement.top < 0 && placement.bottom > window.innerHeight)) &&
@@ -53,7 +53,6 @@ function updateWindowDimensions() {
 }
 
 function initialize() {
-    // console.log("initialized");
     document.addEventListener("click", clear);
     
     updateWindowDimensions();
@@ -113,7 +112,6 @@ function initialize() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-        // console.log("DOM loaded");
         initialize();
     }
 );
@@ -551,12 +549,11 @@ function portraitResize(element) {
     if (notResizing) {
         setTimeout( () => {
             notResizing = true;
+            delay = 250;
             animate();
-            // console.log(notResizing);
-        }, 250);
+        }, delay);
     }
     notResizing = false;
-    // console.log(notResizing);
     element.style.width = portraitCSS;
     element.style.height = portraitCSS;
     element.style.backgroundPositionX = "0px";
@@ -584,7 +581,7 @@ function makeBlock(obj) {
     setTimeout( () => {
         portrait.style.backgroundImage = obj.imgUrl;
         about.style.maxHeight = null;
-        newTalk(obj);
+        // newTalk(obj);
     }, 500);
 }
 
@@ -603,7 +600,6 @@ function animate() {
 }
 
 function newTalk(obj) {
-
     // animation variables
     let pause;
     const div = document.getElementById(obj.id);
@@ -618,7 +614,6 @@ function newTalk(obj) {
     const framesPerTick = 2;
 
     function talk(timestamp) {
-        // console.log(inWindow(div));
         // because we only want it to keep going if we can see it
         if (inWindow(div)) {
             obj.running = true;
@@ -663,7 +658,6 @@ function newTalk(obj) {
                 if (obj.id === "intro" && obj.spans === obj.text.length) {
                     obj.spans++;
                     for (let i = 1; i < aboutArray.length; i++) {
-                        // console.log(i, aboutArray[i]);
                         makeBlock(aboutArray[i]);
                     }
                 }
