@@ -28,14 +28,18 @@ const portraitArray = []; //  array of portrait ids
 let portraitSize; // width in pixels of image
 let portraitCSS; // text value for style of iamge
 
+let notResizing = true;
+
 // Check if an element is visible
 function inWindow(element) {
     var placement = element.getBoundingClientRect();
+    console.log(notResizing);
     return (
         ((placement.top < window.innerHeight && placement.bottom > 0) ||
         (placement.top < 0 && placement.bottom > window.innerHeight)) &&
         ((placement.left > 0 && placement.right < window.innerWidth) ||
-        (placement.left < 0 && placement.right > window.innerWidth)) 
+        (placement.left < 0 && placement.right > window.innerWidth)) &&
+        notResizing 
     )
 };
 
@@ -45,11 +49,11 @@ function updateWindowDimensions() {
     if (portraitSize > 288) { portraitSize = 288 }
     portraitCSS = portraitSize + "px";
     portraitArray.forEach((e) => portraitResize(document.getElementById(e)));
-    console.log(portraitCSS);
+    // console.log(portraitCSS);
 }
 
 function initialize() {
-    console.log("initialized");
+    // console.log("initialized");
     document.addEventListener("click", clear);
     
     updateWindowDimensions();
@@ -106,11 +110,10 @@ function initialize() {
 
         makeBlock(intro);
     };
-
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-        console.log("DOM loaded");
+        // console.log("DOM loaded");
         initialize();
     }
 );
@@ -545,10 +548,20 @@ const aboutArray = [intro, about1, about2, about3, about4, about5];
 
 function portraitResize(element) {
     // add a change to all the protraits
+    if (notResizing) {
+        setTimeout( () => {
+            notResizing = true;
+            animate();
+            // console.log(notResizing);
+        }, 250);
+    }
+    notResizing = false;
+    // console.log(notResizing);
     element.style.width = portraitCSS;
     element.style.height = portraitCSS;
-    element.style.backgroundSize = (portraitSize * 2) + "px " + portraitCSS;
     element.style.backgroundPositionX = "0px";
+    element.style.backgroundSize = (portraitSize * 2) + "px " + portraitCSS;
+    
 }
 
 function makeBlock(obj) {
@@ -605,6 +618,7 @@ function newTalk(obj) {
     const framesPerTick = 2;
 
     function talk(timestamp) {
+        // console.log(inWindow(div));
         // because we only want it to keep going if we can see it
         if (inWindow(div)) {
             obj.running = true;
@@ -649,7 +663,7 @@ function newTalk(obj) {
                 if (obj.id === "intro" && obj.spans === obj.text.length) {
                     obj.spans++;
                     for (let i = 1; i < aboutArray.length; i++) {
-                        console.log(i, aboutArray[i]);
+                        // console.log(i, aboutArray[i]);
                         makeBlock(aboutArray[i]);
                     }
                 }
