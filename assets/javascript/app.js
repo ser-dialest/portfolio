@@ -1,3 +1,9 @@
+// possibly make array in the resize function that contains all the protrits that need to be resized.
+// When a block ios made, its idf gets added to the array, so it gets changed on resize.
+// That has mostly worked!!
+
+// Make portfolio images, like 30vw or something
+
 const about = document.getElementById("about");
 about.style.top = "20vh";
 about.style.left = "10vw";
@@ -18,6 +24,7 @@ let right = "portfolio";
 let left = "none";
 
 let width; // width in pixels of window
+const portraitArray = []; //  array of portrait ids
 let portraitSize; // width in pixels of image
 let portraitCSS; // text value for style of iamge
 
@@ -33,9 +40,11 @@ function inWindow(element) {
 };
 
 function updateWindowDimensions() {
-    width = window.innerWidth;
+    width = Math.floor(window.innerWidth);
     portraitSize = Math.floor(width / 5);
+    if (portraitSize > 288) { portraitSize = 288 }
     portraitCSS = portraitSize + "px";
+    portraitArray.forEach((e) => portraitResize(document.getElementById(e)));
     console.log(portraitCSS);
 }
 
@@ -64,7 +73,7 @@ function initialize() {
     }
 
     requestAnimationFrame(blink);
-    
+
     function clear() {
         document.removeEventListener("click", clear);
         document.getElementById("start").style.display = "none";
@@ -106,6 +115,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 );
 
+// Animations for element movement
 
 function slamLeft() {
     removeListeners();
@@ -384,6 +394,8 @@ function knockDown() {
     requestAnimationFrame(knockAnimation);
 }
 
+// Add and remove event listeners for trransition animations
+
 function removeListeners() {
     if ( right !== "none") {
         document.getElementById(right + "Link").removeEventListener("click", slamLeft);
@@ -438,6 +450,8 @@ function addListeners() {
     }
     animate();
 }
+
+// Text blocks for About section
 
 function Block(id, imgUrl, imgId, imgFloat, text) {
     this.id = id;
@@ -529,7 +543,13 @@ const about5 = new Block(
 
 const aboutArray = [intro, about1, about2, about3, about4, about5];
 
-
+function portraitResize(element) {
+    // add a change to all the protraits
+    element.style.width = portraitCSS;
+    element.style.height = portraitCSS;
+    element.style.backgroundSize = (portraitSize * 2) + "px " + portraitCSS;
+    element.style.backgroundPositionX = "0px";
+}
 
 function makeBlock(obj) {
     const div = document.createElement("div");
@@ -540,8 +560,11 @@ function makeBlock(obj) {
         div.style.marginTop = "15vh";
     }
     const portrait = document.createElement("div");
+    portraitArray.push(obj.imgId);
+    portraitResize(portrait);
     portrait.setAttribute("id", obj.imgId);
     portrait.setAttribute("class", "portraits");
+    
     portrait.style.cssFloat = obj.imgFloat;
     div.appendChild(portrait);
     about.appendChild(div);
@@ -607,7 +630,7 @@ function newTalk(obj) {
                     pause = 0;
                     // Mouth movement
                     if (obj.t % (framesPerTick * 4) === 0) {
-                        imgPosX += 288;
+                        imgPosX += portraitSize;
                         portrait.style.backgroundPositionX = imgPosX + "px";                       
                     }
                     // Letter scroll
