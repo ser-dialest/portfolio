@@ -144,8 +144,8 @@ nav li span {
 
 .links {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
+    align-items: left;
     flex-direction: column;
     height: 100%;
     margin: .5em;
