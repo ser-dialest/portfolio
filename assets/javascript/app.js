@@ -1,6 +1,5 @@
-// Gotta address font size
+// description font can get too big on extrememly wide windows. Need to adjust the min-height upon opening.
 
-// Make portfolio images, like 30vw or something
 
 const about = document.getElementById("about");
 about.style.top = "20vh";
@@ -63,6 +62,8 @@ function updateWindowDimensions() {
     portfolioHeight = Math.floor(width / 4) + "px";
     divResize(document.getElementById("portfolio"), portfolioHeight);
     portfolioArray.forEach((e) => divResize(document.getElementById(e), portfolioHeight));
+    divResize(document.getElementById("contact"), portfolioHeight);
+
 }
 
 function initialize() {
