@@ -23,8 +23,10 @@ let left = "none";
 
 let width; // width in pixels of window
 const portraitArray = []; //  array of portrait ids
+const portfolioArray = ["SafeHamlet", "SiliconScrapera", "PokemonGIFFinder"];
 let portraitSize; // width in pixels of image
 let portraitCSS; // text value for style of iamge
+let portfolioHeight;
 let fontSize;
 
 let notResizing = true;
@@ -44,18 +46,22 @@ function inWindow(element) {
 
 function updateWindowDimensions() {
     width = Math.floor(window.innerWidth);
+    fontSize = Math.floor(width / 40) + "px";
+
     portraitSize = Math.floor(width / 5);
     if (portraitSize > 288) { portraitSize = 288 }
     portraitCSS = portraitSize + "px";
     portraitArray.forEach((e) => portraitResize(document.getElementById(e)));
-    fontSize = Math.floor(width / 40) + "px";
     aboutArray.forEach((e) => {
         // console.log(e.id);
         let element = document.getElementById(e.id);
         if (element !== null) {
-            fontResize(element);
+            divResize(element, portraitCSS);
         }
     });
+    
+    portfolioHeight = Math.floor(width / 4) + "px";
+    portfolioArray.forEach((e) => divResize(document.getElementById(e), portfolioHeight));
 }
 
 function initialize() {
@@ -566,26 +572,31 @@ function portraitResize(element) {
     element.style.backgroundSize = (portraitSize * 2) + "px " + portraitCSS; 
 }
 
-function fontResize(element) {
+function divResize(element, height) {
+    element.style.minHeight = height;
     element.style.fontSize = fontSize;
 }
 
 function makeBlock(obj) {
     const div = document.createElement("div");
     div.setAttribute("id", obj.id);
-    div.style.minHeight = portraitCSS;
     about.style.maxHeight = (about.offsetHeight + window.innerHeight) + "px";
     if (div.id !== "intro") {
-        div.style.marginTop = "15vh";
+        div.style.marginTop = "10vh";
     }
     const portrait = document.createElement("div");
     portraitArray.push(obj.imgId);
     portraitResize(portrait);
-    fontResize(div);
+    divResize(div, portraitCSS);
     portrait.setAttribute("id", obj.imgId);
     portrait.setAttribute("class", "portraits");
     
     portrait.style.cssFloat = obj.imgFloat;
+    if (obj.imgFloat === "right") {
+        portrait.style.marginLeft = ".5em";
+    } else {
+        portrait.style.marginRight = ".5em";
+    }
     div.appendChild(portrait);
     about.appendChild(div);
     setTimeout( () => {

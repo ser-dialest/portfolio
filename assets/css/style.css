@@ -17,6 +17,14 @@ section {
     width: 100vw;
 }
 
+a:link {
+    color: #0000bc;
+}
+
+a:visited {
+    color: #503000;
+}
+
 #header {
     width: 100%;
     position: fixed;
@@ -24,13 +32,13 @@ section {
     left: 0;
     background: #ffffff;
     border-bottom-style: solid;
-    border-bottom-color: #999;
+    border-bottom-color: #787878;
     z-index: 1;
 }
 
 h1 {
     display: inline-block;
-    background: #4aaaa5;
+    background: #006800;
     color: #ffffff;
     font-family: 'Inconsolata', monospace;
     /* font-family: Georgia, 'Times New Roman', Times, serif; */
@@ -57,7 +65,7 @@ nav {
 }
 
 nav span:hover {
-    color: #3e0ce8;
+    color: #0000bc;
     cursor: pointer;
 }
 
@@ -67,7 +75,7 @@ nav li{
 }
 
 nav li span {
-    color: #999;
+    color: #787878;
     text-decoration: none;
 }
 
@@ -79,7 +87,7 @@ nav li span {
 .container {
     /* position: absolute; */
     outline-style: solid;
-    outline-color: #4aaaa5;
+    outline-color: #006800;
     outline-width: 9px;
     outline-offset: -24px;
     padding: 36px;
@@ -109,8 +117,8 @@ nav li span {
 }
 
 .portraits {
-    margin-left: .5em;
-    margin-right: .5em;
+    /* margin-left: .5em;
+    margin-right: .5em; */
     /* height: 288px;
     width: 288px; */
 }
@@ -128,28 +136,29 @@ nav li span {
 }
 
 #jumpToPort:hover {
-    color: #3e0ce8;
+    color: #0000bc;
     cursor: pointer;
 }
 
 #jumpToPort2:hover {
-    color: #3e0ce8;
+    color: #0000bc;
     cursor: pointer;
 }
 
 #jumpToContacts:hover {
-    color: #3e0ce8;
+    color: #0000bc;
     cursor: pointer;
 }
 
 #safeHamletLink:hover {
-    color: #3e0ce8;
+    color: #0000bc;
     cursor: pointer;
 }
 
 .portImg {
     float: left;
     margin: .5em;
+    width: 25vw;
 }
 
 .links {
