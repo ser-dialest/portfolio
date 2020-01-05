@@ -8,6 +8,8 @@ body {
     margin: 0;
     width: 100vw;
     overflow-x: hidden;
+    font-family: 'Inconsolata', monospace;
+
 }
 
 section {
@@ -30,21 +32,20 @@ h1 {
     display: inline-block;
     background: #4aaaa5;
     color: #ffffff;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Inconsolata', monospace;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
     padding: 20px;
     margin: 0px;
 }
 
-p {
-    font-size: 2em;
+/* p {
+    font-size: 28px;
     margin: .5em;
-}
-
+} */
+/* 
 #about span {
-    font-size: 2em;
-    /* margin-top: .5em; */
-    /* display: inline-block; */
-}
+    font-size: 26px;
+} */
 
 nav {
     position: relative;

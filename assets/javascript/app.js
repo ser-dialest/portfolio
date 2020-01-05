@@ -1,6 +1,4 @@
-// possibly make array in the resize function that contains all the protrits that need to be resized.
-// When a block ios made, its idf gets added to the array, so it gets changed on resize.
-// That has mostly worked!!
+// Gotta address font size
 
 // Make portfolio images, like 30vw or something
 
@@ -27,6 +25,7 @@ let width; // width in pixels of window
 const portraitArray = []; //  array of portrait ids
 let portraitSize; // width in pixels of image
 let portraitCSS; // text value for style of iamge
+let fontSize;
 
 let notResizing = true;
 let delay = 500;
@@ -49,7 +48,14 @@ function updateWindowDimensions() {
     if (portraitSize > 288) { portraitSize = 288 }
     portraitCSS = portraitSize + "px";
     portraitArray.forEach((e) => portraitResize(document.getElementById(e)));
-    // console.log(portraitCSS);
+    fontSize = Math.floor(width / 40) + "px";
+    aboutArray.forEach((e) => {
+        // console.log(e.id);
+        let element = document.getElementById(e.id);
+        if (element !== null) {
+            fontResize(element);
+        }
+    });
 }
 
 function initialize() {
@@ -557,14 +563,18 @@ function portraitResize(element) {
     element.style.width = portraitCSS;
     element.style.height = portraitCSS;
     element.style.backgroundPositionX = "0px";
-    element.style.backgroundSize = (portraitSize * 2) + "px " + portraitCSS;
-    
+    element.style.backgroundSize = (portraitSize * 2) + "px " + portraitCSS; 
+}
+
+function fontResize(element) {
+    element.style.fontSize = fontSize;
 }
 
 function makeBlock(obj) {
     const div = document.createElement("div");
     div.setAttribute("id", obj.id);
-    div.style.minHeight = "288px";
+    div.style.minHeight = portraitCSS + "px";
+    div.style.width = "100%";
     about.style.maxHeight = (about.offsetHeight + window.innerHeight) + "px";
     if (div.id !== "intro") {
         div.style.marginTop = "15vh";
@@ -572,6 +582,7 @@ function makeBlock(obj) {
     const portrait = document.createElement("div");
     portraitArray.push(obj.imgId);
     portraitResize(portrait);
+    fontResize(div);
     portrait.setAttribute("id", obj.imgId);
     portrait.setAttribute("class", "portraits");
     
