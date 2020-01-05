@@ -723,7 +723,7 @@ function contactAnimation() {
 function expand(event) {
     const button = event.target;
     button.removeEventListener("click", expand);
-    button.innerHTML = "Collapse Collapsible";
+    button.innerHTML = "Hide Description";
     const div = document.getElementById(button.id + "Text");
     div.style.maxHeight = (div.offsetHeight + window.innerHeight) + "px";
     button.addEventListener("click", collapse);
@@ -732,7 +732,7 @@ function expand(event) {
 function collapse(event) {
     const button = event.target;
     button.removeEventListener("click", collapse);
-    button.innerHTML = "Open Collapsible";
+    button.innerHTML = "View Description";
     document.getElementById(button.id + "Text").style.maxHeight = 0 + "px";
     button.addEventListener("click", expand);
 }

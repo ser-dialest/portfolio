@@ -159,3 +159,12 @@ nav li span {
     max-height: 0px;
     transition: max-height .5s linear;
 }
+
+.expander {
+    text-decoration: underline;
+}
+
+.expander:hover {
+    color: #0000bc;
+    cursor: pointer;
+}
