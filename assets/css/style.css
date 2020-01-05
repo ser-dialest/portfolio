@@ -9,7 +9,6 @@ body {
     width: 100vw;
     overflow-x: hidden;
     font-family: 'Inconsolata', monospace;
-
 }
 
 section {
@@ -167,4 +166,29 @@ nav li span {
 .expander:hover {
     color: #0000bc;
     cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+    nav {
+        flex-direction: column;
+        width: 100%;
+        left: 0;
+    }
+
+    #navlinks {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        text-align: center;
+        width: 100%;
+        padding: 10px 0px;
+        display: block;
+    }
+
+    nav ul {
+        text-align: center;
+        padding-inline-start: 0px;
+    }
 }
