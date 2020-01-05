@@ -573,8 +573,7 @@ function fontResize(element) {
 function makeBlock(obj) {
     const div = document.createElement("div");
     div.setAttribute("id", obj.id);
-    div.style.minHeight = portraitCSS + "px";
-    div.style.width = "100%";
+    div.style.minHeight = portraitCSS;
     about.style.maxHeight = (about.offsetHeight + window.innerHeight) + "px";
     if (div.id !== "intro") {
         div.style.marginTop = "15vh";
