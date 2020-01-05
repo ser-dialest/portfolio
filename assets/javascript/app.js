@@ -546,12 +546,12 @@ const about5 = new Block(
     [
         ["If you've come this far, you've seen a lot of different Jeffreys. That's because I am a lot of different Jeffreys! And if you need something done, one of them can make it happen for you.\n", "about5a"],
         ["If you would like some more evidence of what I can do, please head over to my ", "about5b"],
-        ["portfolio ", "jumpToPort2" ],
-        ["where you can see a handful of the projects I'm working on. I'd especially like it if you spent a couple minutes checking out the game I've been making, ", "about5c"],
-        ["Safe Hamlet.\n", "safeHamletLink" ],
-        ["If you'd like to contact me, I'd love to be contacted by you! Please check out the ", "about5d"],
-        ["contacts ", "jumpToContacts"],
-        ["section of this page for all the ways you can reach me.\nThanks again for stopping by! Have a great day!\n","about5e"],
+        ["portfolio", "jumpToPort2" ],
+        [" where you can see a handful of the projects I'm working on. I'd especially like it if you spent a couple minutes checking out the game I've been making, ", "about5c"],
+        ["Safe Hamlet", "safeHamletLink" ],
+        [".\nIf you'd like to contact me, I'd love to be contacted by you! Please check out the ", "about5d"],
+        ["contacts", "jumpToContacts"],
+        [" section of this page for all the ways you can reach me.\nThanks again for stopping by! Have a great day!\n","about5e"],
         ["\n - Jeffrey Lloyd Heatherly","about5f"],
     ]
 );
