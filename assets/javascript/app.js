@@ -48,7 +48,6 @@ function updateWindowDimensions() {
     fontSize = Math.floor(width / 40) + "px";
 
     portraitSize = Math.floor(width / 5);
-    if (portraitSize > 288) { portraitSize = 288 }
     portraitCSS = portraitSize + "px";
     portraitArray.forEach((e) => portraitResize(document.getElementById(e)));
     aboutArray.forEach((e) => {
@@ -481,7 +480,7 @@ function Block(id, imgUrl, imgId, imgFloat, text) {
 
 const intro = new Block(
     "intro",
-    "url('./assets/images/JLHBitSheet3.png')",
+    "url('./assets/images/JLHBitSheet.png')",
     "jeff",
     "left",
     [
@@ -493,7 +492,7 @@ const intro = new Block(
 
 const about1 = new Block(
     "about1",
-    "url('./assets/images/LightSheet3.png')",
+    "url('./assets/images/LightSheet.png')",
     "jeff1",
     "right",
     [
@@ -505,7 +504,7 @@ const about1 = new Block(
 
 const about2 = new Block(
     "about2",
-    "url('./assets/images/ToudouSheet3.png')",
+    "url('./assets/images/ToudouSheet.png')",
     "jeff2",
     "left",
     [
@@ -517,7 +516,7 @@ const about2 = new Block(
 
 const about3 = new Block(
     "about3",
-    "url('./assets/images/CaoCaoSheet3.png')",
+    "url('./assets/images/CaoCaoSheet.png')",
     "jeff3",
     "right",
     [
@@ -528,7 +527,7 @@ const about3 = new Block(
 
 const about4 = new Block(
     "about4",
-    "url('./assets/images/HigginsSheet3.png')",
+    "url('./assets/images/HigginsSheet.png')",
     "jeff4",
     "left",
     [
@@ -540,7 +539,7 @@ const about4 = new Block(
 
 const about5 = new Block(
     "about5",
-    "url('./assets/images/ReverseSheet3.png')",
+    "url('./assets/images/ReverseSheet.png')",
     "jeff5",
     "right",
     [
