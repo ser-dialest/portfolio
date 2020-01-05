@@ -61,6 +61,7 @@ function updateWindowDimensions() {
     });
     
     portfolioHeight = Math.floor(width / 4) + "px";
+    divResize(document.getElementById("portfolio"), portfolioHeight);
     portfolioArray.forEach((e) => divResize(document.getElementById(e), portfolioHeight));
 }
 
