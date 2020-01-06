@@ -51,7 +51,6 @@ function updateWindowDimensions() {
     portraitCSS = portraitSize + "px";
     portraitArray.forEach((e) => portraitResize(document.getElementById(e)));
     aboutArray.forEach((e) => {
-        // console.log(e.id);
         let element = document.getElementById(e.id);
         if (element !== null) {
             divResize(element, portraitCSS);
