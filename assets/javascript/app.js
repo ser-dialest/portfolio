@@ -22,7 +22,7 @@ let left = "none";
 
 let width; // width in pixels of window
 const portraitArray = []; //  array of portrait ids
-const portfolioArray = ["SafeHamlet", "SiliconScrapera", "PokemonGIFFinder"];
+const portfolioArray = ["SafeHamlet", "SiliconScrapera", "PokemonGIFFinder", "RCRWordGuess", "FFBattleRoyale", "AdvanceWarsRPS", "Demos"];
 let portraitSize; // width in pixels of image
 let portraitCSS; // text value for style of iamge
 let portfolioHeight;
