@@ -508,8 +508,7 @@ const about2 = new Block(
     "left",
     [
         ["Before learning to program, I worked as a tutor, and though I specialized in mathematics and the structure of English, I've led students to success in a wide range of subjects.\n", "about2a"],
-        ["This was not because I already knew everything about the subjects they were trying to learn (I didn't), but because a person can learn anything if they believe they can and are willing to put in the work - and there's nothing I believe I cannot learn.\n", "about2b"],
-        ["I also don't consider something learned unless I can explain it, so if you need something done with a tool I'm not an expert with yet (or maybe haven't even heard of), or if you need something explained to a client or colleague so they can make use of that resource, I can do that for you.", "about2c" ]
+        ["This has required me to become a professional learner and required my learning to be complete enough to give that understanding to someone else – whether that's a student, client, or co-worker.", "about2b"],
     ]
 );
 
@@ -519,8 +518,8 @@ const about3 = new Block(
     "jeff3",
     "right",
     [
-        ["Communicating with clients and colleagues is a skill I've honed over a decade of customer service experience. I've worked on every level from manning a register to leading the customer service department of a multi-million dollar company.\n", "about3a"],
-        ["This means I've been charged not just with with assisting those clients who have proven themselves to be the most difficult to help, but training and supervising teams responsible for setting clients' expectations and making sure they are met.", "about3b"],
+        ["I've honed these communication skills over a decade of customer service experience, working on every level from manning a register to leading the customer service department of a multi-million dollar company.\n", "about3a"],
+        ["Throughout this, I have assisted those clients who are most difficult to help, and trained and supervised teams responsible for setting and meeting clients' expectations.", "about3b"],
     ]
 );
 
@@ -530,9 +529,9 @@ const about4 = new Block(
     "jeff4",
     "left",
     [
-        ["I'm also a member of the Actors' Equity Association, which is the union for professional stage actors in the United States. Being a professional actor doesn't sound like it has much to do with being a developer, but you'd be surprised.\n", "about4a"],
-        ["Actors bring into reality that which was only an idea before. They find creative solutions to challenges presented by an extensive and highly specific set of parameters called a script while following the plans of a director.\n", "about4b"],
-        ["Actors are people who create something new while doing what they're told. They change themselves to meet the needs of the assignment - project after project after project.", "about4c" ]
+        ["I'm also a member of the Actors' Equity Association,  the union for professional stage actors in the United States.\n", "about4a"],
+        ["Being an actor doesn't sound like it has much to do with being a developer, but actors make concrete what was previously only an idea. \n", "about4b"],
+        ["They find creative solutions and follow direction, learning new skills project after project after project.", "about4c" ]
     ]
 );
 
@@ -542,14 +541,14 @@ const about5 = new Block(
     "jeff5",
     "right",
     [
-        ["If you've come this far, you've seen a lot of different Jeffreys. That's because I am a lot of different Jeffreys! And if you need something done, one of them can make it happen for you.\n", "about5a"],
-        ["If you would like some more evidence of what I can do, please head over to my ", "about5b"],
+        ["If you've come this far, you've seen a lot of different Jeffreys. That's because I am a lot of different Jeffreys! If you need something done, one of them can make it happen for you.\n", "about5a"],
+        ["If you'd like more evidence of what I can do, please head over to my ", "about5b"],
         ["portfolio", "jumpToPort2" ],
-        [" where you can see a handful of the projects I'm working on. I'd especially like it if you spent a couple minutes checking out the game I've been making, ", "about5c"],
+        [" to see some of the projects I'm working on. I'd especially like it if you spent a few minutes checking out the game I'm making, ", "about5c"],
         ["Safe Hamlet", "safeHamletLink" ],
         [".\nIf you'd like to contact me, I'd love to be contacted by you! Please check out the ", "about5d"],
         ["contacts", "jumpToContacts"],
-        [" section of this page for all the ways you can reach me.\nThanks again for stopping by! Have a great day!\n","about5e"],
+        [" section of this page for all the ways you can reach me.\nThanks again for stopping by and have a great day!\n","about5e"],
         ["\n - Jeffrey Lloyd Heatherly","about5f"],
     ]
 );
