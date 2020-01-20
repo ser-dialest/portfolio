@@ -1,17 +1,12 @@
-var http = require("http");
-var fs = require("fs");
+const express = require("express");
 
-var PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
-var server = http.createServer(handleRequest);
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
 
-function handleRequest(req, res) {
-  fs.readFile(__dirname + "/index.html", function(err, data) {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(data);
-  });
-}
-
-server.listen(PORT, function() {
+app.listen(PORT, function() {
   console.log("Server is listening on PORT: " + PORT);
 });
