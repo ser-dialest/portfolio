@@ -10,7 +10,7 @@ app.use(express.json());
 // app.use(express.static("public"));
 
 app.use( (req, res) => {
-  if(!req.secure) {
+  if(req.header('x-forwarded-proto') !== "https") {
     console.log("redirecting to https");
     res.redirect("https://" + req.headers.host + req.url);
   }
