@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ser-dialest/portfolio#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "heroku-ssl-redirect": "0.0.4"
   }
 }
